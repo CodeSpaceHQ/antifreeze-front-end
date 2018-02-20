@@ -1,0 +1,16 @@
+# Logs
+*.log
+
+# Editor
+
+## VIM
+*.swp
+*.swo
+
+# Dependency directories
+node_modules/
+
+# Webpack bundles
+public/*
+!public/index.html
+

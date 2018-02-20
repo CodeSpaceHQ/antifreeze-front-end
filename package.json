@@ -1,0 +1,18 @@
+{
+  "name": "antifreeze-front-end",
+  "version": "0.0.0",
+  "description": "Front-end for AntiFreeze",
+  "main": "src/index.jsx",
+  "repository": "git@github.com:NilsG-S/antifreeze-front-end.git",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      ["env", {
+        "targets": {
+          "node": "8.9"
+        }
+      }],
+      "react"
+    ]
+  }
+}
