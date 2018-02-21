@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "es_modules": {},
+    "webpack": {
+      "configPath": "./webpack/webpack.prod.js"
+    }
+  },
+  "libs": [
+    "ecma5",
+    "ecma6"
+  ],
+  "ecmaVersion": 6
+}
