@@ -5,14 +5,33 @@
   "main": "src/index.jsx",
   "repository": "git@github.com:NilsG-S/antifreeze-front-end.git",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --env=dev"
+  },
   "babel": {
     "presets": [
-      ["env", {
-        "targets": {
-          "node": "8.9"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "8.9"
+          }
         }
-      }],
+      ],
       "react"
     ]
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
   }
 }
