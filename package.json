@@ -1,9 +1,12 @@
 {
-  "name": "antifreeze-front-end",
-  "version": "0.0.0",
+  "name": "freeze-b-gone",
+  "version": "0.0.1",
   "description": "Front-end for AntiFreeze",
   "main": "src/index.jsx",
-  "repository": "git@github.com:NilsG-S/antifreeze-front-end.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/NilsG-S/antifreeze-front-end.git"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env=dev"
@@ -58,5 +61,10 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/NilsG-S/antifreeze-front-end/issues"
+  },
+  "homepage": "https://github.com/NilsG-S/antifreeze-front-end#readme",
+  "author": "Robin"
 }
