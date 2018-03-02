@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 
 
@@ -41,7 +41,7 @@ const LoginForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Log in" primary />
+        <Button variant="raised" type="submit" label="Log in" primary />
       </div>
 
       <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
