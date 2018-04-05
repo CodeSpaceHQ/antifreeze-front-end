@@ -39,7 +39,7 @@ Please read our code of conduct, and the process for submitting pull requests to
 ## Authors
 
 * **Robin Ronson** - *Main work* - [robrons96](https://github.com/robrons96)
-* **Nils Griswold-Steiner** - *Inital Setup* - [robrons96](https://github.com/NilsG-S)
+* **Nils Griswold-Steiner** - *Inital Setup* - [NilsG-S](https://github.com/NilsG-S)
 
 ## License
 
