@@ -14,9 +14,12 @@ Webpack
 
 ### Installing
 
-Install npm then: 
+Install Yarn then: 
 
 ```
+Commands: 
+
+yarn install
 npm run dev 
 
 ```
@@ -27,8 +30,7 @@ Open http://localhost:8080/ in browser.
 
 ## Built With
 
-* [Sublime Text](https://www.sublimetext.com/) - The code editor used 
-* [VS Code](https://code.visualstudio.com/) - Dependency Management
+* [VS Code](https://code.visualstudio.com/) -  The code editor used
 * [React](https://reactjs.org/) - The web framework used
 
 ## Authors
