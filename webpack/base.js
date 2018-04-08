@@ -11,7 +11,6 @@ const base = {
       appPath,
       nodePath,
     ],
-    extensions: ['.js', '.jsx'],
   },
 
   output: {
@@ -34,12 +33,9 @@ const base = {
     */
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: nodePath,
         loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-3']
-        }
       },
     ],
   },
