@@ -36,10 +36,11 @@ Open http://localhost:8080/ in browser.
 ## Authors
 
 * **Robin Ronson** - *Main work* - [robrons96](https://github.com/robrons96)
-* **Nils Griswold-Steiner** - *Inital Setup* - [NilsG-S](https://github.com/NilsG-S)
+* **Nils Griswold-Steiner** - *Inital Setup and Build Fixes* - [NilsG-S](https://github.com/NilsG-S)
 
 ## Acknowledgments
 
 * Vladimir Ponomarev (Thanks for your login tutorial)
 * Malte Ubl and Eiji Kitamura (Thanks for your WebSockets tutorial)
 * Jason Watmore (Thanks for your Redux broilerplate code and JWT authentication)
+* Nils Griswold-Steiner (Thanks for your API documentation)

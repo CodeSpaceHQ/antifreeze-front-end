@@ -27,11 +27,50 @@ function login(username, password) {
         .then(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
+                console.log("Token: " + user.token)
+                wsHandler(user.token)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }
             return user;
         });
+}
+
+function wsHandler(token) {
+
+    connection.send(token)
+
+    // Not using for the demo 
+    /* 
+
+    connection.onmessage = function (e) {
+
+        console.log(e);
+
+        var jsData = JSON.parse(e.data);
+
+        if(5 == jsData['op']) {
+            console.log('Message: Web Socket Authenticaticated, Data: ' + e.data);            
+            getDevices(token);
+
+        } else {
+
+            handleResponse(e.data);
+
+        }
+
+    }; */
+
+
+}
+
+function getDevices() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch('http://35.226.42.111:8081/rest/user/devices', requestOptions).then(handleResponse);
 }
 
 function logout() {

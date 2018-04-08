@@ -34,7 +34,17 @@ class NestedList extends React.Component {
 
     this.state = {
       open: [-1],
+      temp: 20,
     };
+
+    connection.onmessage = function (e) {
+      var jsData = JSON.parse(e.data);
+
+      if(jsData['op'] == 1) {
+        this.setState({temp: jsData['temp']});
+      }
+  
+  }.bind(this);
 
     this.handleClick = value => () => {
       const { open } = this.state;
@@ -66,12 +76,11 @@ class NestedList extends React.Component {
           component="nav"
           subheader={<ListSubheader component="div">Devices</ListSubheader>}
         >
-
           <ListItem button onClick={this.handleClick(0)}>
             <ListItemIcon>
               <GardenIcon />
             </ListItemIcon>
-            <ListItemText inset primary="Garden" secondary="21 °C" />
+            <ListItemText inset primary="Garden" secondary= { this.state.temp + ' °C' }/>
             {this.state.open.indexOf(0) !== -1 ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={this.state.open.indexOf(0) !== -1} timeout="auto" unmountOnExit>
@@ -96,6 +105,7 @@ class NestedList extends React.Component {
             </List>
           </Collapse>
 
+          {/*
           <ListItem button onClick={this.handleClick(1)}>
             <ListItemIcon>
               <BathRoomIcon />
@@ -153,6 +163,7 @@ class NestedList extends React.Component {
 
             </List>
           </Collapse>
+          */}
 
         </List>
       </div>

@@ -71,7 +71,7 @@ class ButtonAppBar extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Freeze-B-Gone
           </Typography>
-              <Button onClick={this.handleClose} color="inherit">Logout</Button>
+              <Button variant="raised" color="secondary" onClick={this.handleClose} color="inherit">Logout</Button>
             </Toolbar>
           </AppBar>
           <Drawer open={this.state.open} onClose={this.toggleDrawer}>
