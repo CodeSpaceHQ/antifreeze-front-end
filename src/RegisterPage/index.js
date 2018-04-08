@@ -1,1 +1,1 @@
-export * from './RegisterPage.jsx';
+export * from './RegisterPage';

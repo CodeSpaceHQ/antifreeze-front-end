@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import firebase from 'firebase';
 import Drawer from 'material-ui/Drawer';
 import Hidden from 'material-ui/Hidden';
 import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
@@ -71,7 +72,7 @@ class ButtonAppBar extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Freeze-B-Gone
           </Typography>
-              <Button onClick={this.handleClose} color="inherit">Logout</Button>
+              <Button variant="raised" color="secondary" onClick={this.handleClose} color="inherit">Logout</Button>
             </Toolbar>
           </AppBar>
           <Drawer open={this.state.open} onClose={this.toggleDrawer}>
