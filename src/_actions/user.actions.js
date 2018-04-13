@@ -16,7 +16,7 @@ function login(username, password) {
         dispatch(request({ username }));
  
         userService.login(username, password)
-            .then(
+            .then( 
                 user => { 
                     dispatch(success(user));
                     history.push('/');
@@ -97,4 +97,21 @@ function _delete(id) {
     function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+}
+
+function updateTemp() { 
+
+    return dispatch => {
+
+        connection.onmessage = function (e) {
+            var jsData = JSON.parse(e.data);
+      
+            if(jsData['op'] == 1) {
+               update(jsData['temp']);
+            }
+    }
+
+    function update(temp) { return { type: userConstants.GETEMP_REQUEST, TEMP: temp } }
+
+    };
 }

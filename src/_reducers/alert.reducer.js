@@ -14,6 +14,8 @@ export function alert(state = {}, action) {
       };
     case alertConstants.CLEAR:
       return {};
+    case alertConstants.TEMP:
+      return {};
     default:
       return state
   }

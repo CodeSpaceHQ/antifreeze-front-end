@@ -45,6 +45,16 @@ export function users(state = {}, action) {
         })
       };
     default:
-      return state
+      return state; 
   }
+}
+
+export function temperature(state = 20,  action) {
+  switch (action.type) {
+    case userConstants.GETEMP_REQUEST:
+      return action.TEMP; 
+      
+    default: 
+      return state; 
+    }
 }

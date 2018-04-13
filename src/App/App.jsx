@@ -36,7 +36,7 @@ class App extends React.Component {
                                 <div className={`alert ${alert.type}`}>{alert.message} </div>
                                 }
                             </div>
-                        </Router>
+                        </Router> 
     
                     </div>
                 </div>

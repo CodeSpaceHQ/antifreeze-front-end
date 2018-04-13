@@ -10,9 +10,10 @@ import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } f
 import IconButton from 'material-ui/IconButton';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import Collapse from 'material-ui/transitions/Collapse';
+import Collapse from 'material-ui/transitions/Collapse'; 
 import ListSubheader from 'material-ui/List/ListSubheader';
 import Typography from 'material-ui/Typography';
+import { Device } from '../Device';
 
 const styles = theme => ({
   root: {
@@ -46,36 +47,22 @@ class NestedList extends React.Component {
   
   }.bind(this);
 
-    this.handleClick = value => () => {
-      const { open } = this.state;
-      const currentIndex = open.indexOf(value);
-      const newOpen = [...open];
-      this.setState({ open: !this.state.open });
 
-      if (currentIndex === -1) {
-        newOpen.push(value);
-      } else {
-        newOpen.splice(currentIndex, 1);
-      }
-
-      this.setState({
-        open: newOpen,
-      });
-
-    };
+  
 
 
   }
   render() {
-    const { classes } = this.props;
-    const { expanded } = this.state;
+  
 
     return (
-      <div className={classes.root}>
+      <div>
         <List
           component="nav"
           subheader={<ListSubheader component="div">Devices</ListSubheader>}
         >
+        <Device/>
+          {/*
           <ListItem button onClick={this.handleClick(0)}>
             <ListItemIcon>
               <GardenIcon />
@@ -105,7 +92,7 @@ class NestedList extends React.Component {
             </List>
           </Collapse>
 
-          {/*
+        
           <ListItem button onClick={this.handleClick(1)}>
             <ListItemIcon>
               <BathRoomIcon />
@@ -174,5 +161,6 @@ class NestedList extends React.Component {
 NestedList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 
 export default withStyles(styles)(NestedList);
