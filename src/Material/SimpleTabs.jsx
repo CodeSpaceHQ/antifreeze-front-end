@@ -33,23 +33,6 @@ class NestedList extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      open: [-1],
-      temp: 20,
-    };
-
-    connection.onmessage = function (e) {
-      var jsData = JSON.parse(e.data);
-
-      if(jsData['op'] == 1) {
-        this.setState({temp: jsData['temp']});
-      }
-  
-  }.bind(this);
-
-
-  
-
 
   }
   render() {
@@ -62,6 +45,7 @@ class NestedList extends React.Component {
           subheader={<ListSubheader component="div">Devices</ListSubheader>}
         >
         <Device/>
+
           {/*
           <ListItem button onClick={this.handleClick(0)}>
             <ListItemIcon>

@@ -8,8 +8,15 @@ import GardenIcon from 'material-ui-icons/LocalFlorist';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import SettingsIcon from 'material-ui-icons/Settings';
+import { userActions } from '../_actions';
 
 class Device extends React.Component {
+
+      componentDidMount() {
+      this.props.dispatch(userActions.temp());
+         
+  }
+
     constructor(props) {
         super(props);
 
@@ -69,6 +76,7 @@ function mapStateToProps(state) {
     temp: state.temperature,
   };
 }
+
 
 const connectedDevice = connect(mapStateToProps)(Device);
 export { connectedDevice as Device };

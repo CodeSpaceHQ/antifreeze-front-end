@@ -8,7 +8,9 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    temp,
+    delete: _delete,
+    
 };
 
 function login(username, password) {
@@ -35,6 +37,7 @@ function login(username, password) {
 
 function logout() {
     userService.logout();
+    
     return { type: userConstants.LOGOUT };
 }
 
@@ -99,19 +102,12 @@ function _delete(id) {
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
 
-function updateTemp() { 
-
+function temp() { 
+   
     return dispatch => {
-
-        connection.onmessage = function (e) {
-            var jsData = JSON.parse(e.data);
-      
-            if(jsData['op'] == 1) {
-               update(jsData['temp']);
-            }
-    }
-
-    function update(temp) { return { type: userConstants.GETEMP_REQUEST, TEMP: temp } }
-
+        dispatch(update());
+        
     };
+    function update () {return {type: userConstants.GETEMP_REQUEST, temp:6 } }
+    
 }

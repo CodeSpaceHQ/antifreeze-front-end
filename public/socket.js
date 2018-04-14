@@ -11,7 +11,7 @@ connection.onmessage = function (e) {
         console.log('Server: ' + e.data);
 
     } else if(jsData['op'] == 1) {
-        temp = jsData['temp'];
+        console.log('Server: ' + e.data);
     }
 
 };
