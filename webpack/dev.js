@@ -14,6 +14,7 @@ const dev = webpackMerge(base, {
     port: 8080,
     host: 'localhost',
     contentBase: buildPath,
+    historyApiFallback: true,
     inline: true,
   },
 
