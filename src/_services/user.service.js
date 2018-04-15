@@ -9,7 +9,8 @@ export const userService = {
     update,
     delete: _delete
 };
- 
+
+
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
@@ -39,6 +40,21 @@ function login(username, password) {
 function wsHandler(token) {
 
     connection.send(token)
+
+    // Log messages from the server
+    connection.onmessage = function (e) {
+
+        var jsData = JSON.parse(e.data);
+
+        if(jsData['op'] == 5) {
+            console.log('Server: ' + e.data);
+
+        } else if(jsData['op'] == 1) {
+            console.log('Server: ' + e.data);
+        }
+
+    };
+        
 
     // Not using for the demo 
     /* 

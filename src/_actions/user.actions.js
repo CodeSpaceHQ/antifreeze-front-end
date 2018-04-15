@@ -102,12 +102,12 @@ function _delete(id) {
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
 
-function temp() { 
+function temp(temp) { 
    
     return dispatch => {
         dispatch(update());
         
     };
-    function update () {return {type: userConstants.GETEMP_REQUEST, temp:6 } }
+    function update () {return {type: userConstants.GETEMP_REQUEST, TEMP: temp } }
     
 }

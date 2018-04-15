@@ -12,9 +12,7 @@ import { userActions } from '../_actions';
 
 class Device extends React.Component {
 
-      componentDidMount() {
-      this.props.dispatch(userActions.temp());
-         
+      componentDidMount() {         
   }
 
     constructor(props) {
