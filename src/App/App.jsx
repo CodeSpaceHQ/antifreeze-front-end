@@ -31,7 +31,6 @@ class App extends React.Component {
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} /> 
-                                {/* FIX ABOVE ME WITH component={HomePage} */}
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/graph" component={GraphPage} />
