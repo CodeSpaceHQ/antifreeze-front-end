@@ -10,10 +10,12 @@ import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } f
 import IconButton from 'material-ui/IconButton';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import Collapse from 'material-ui/transitions/Collapse'; 
+import Collapse from 'material-ui/transitions/Collapse';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import Typography from 'material-ui/Typography';
 import { Device } from '../Device';
+import { userActions } from '../_actions';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -30,13 +32,18 @@ const styles = theme => ({
 
 class NestedList extends React.Component {
 
+  componentDidMount() {
+    this.props.dispatch(userActions.reconnectSocket());
+  }
+
+
   constructor() {
     super()
 
 
   }
   render() {
-  
+
 
     return (
       <div>
@@ -44,7 +51,7 @@ class NestedList extends React.Component {
           component="nav"
           subheader={<ListSubheader component="div">Devices</ListSubheader>}
         >
-        <Device/>
+          <Device />
 
           {/*
           <ListItem button onClick={this.handleClick(0)}>
@@ -147,4 +154,7 @@ NestedList.propTypes = {
 };
 
 
-export default withStyles(styles)(NestedList);
+
+const connectedNestedList = connect(null)(NestedList);
+
+export default withStyles(styles)(connectedNestedList);

@@ -1,5 +1,6 @@
 import { userActions } from '../_actions';
 import { config } from '../_helpers';
+import { userConstants } from '../_constants';
 
 const socketMiddleware = (function () {
 
@@ -7,7 +8,7 @@ const socketMiddleware = (function () {
 
   const onOpen = (ws, store, token) => evt => {
     //Send a handshake, or authenticate with remote end
-
+    socket.send(token);
     //Tell the store we're connected
     // store.dispatch(actions.connected());
   }
@@ -20,13 +21,15 @@ const socketMiddleware = (function () {
   const onMessage = (ws, store) => evt => {
     //Parse the JSON message received on the websocket
     var msg = JSON.parse(evt.data);
-    switch (msg.type) {
-      case "CHAT_MESSAGE":
-        //Dispatch an action that adds the received message to our state
-        //store.dispatch(actions.messageReceived(msg));
+    switch (msg.op) {
+      case 5 :
+        console.log("Message: Established authenticated connection with the websocket");
         break;
+      case 1 : 
+        console.log("Message: Recived a temperature update"); 
+        break; 
       default:
-        console.log("Received unknown message type: '" + msg.type + "'");
+        console.log("Received unknown message type: '" + msg.op + "'");
         break;
     }
   }
@@ -34,15 +37,14 @@ const socketMiddleware = (function () {
   return store => next => action => {
     switch (action.type) {
       //The user wants us to connect
-      case 'CONNECT':
+      case userConstants.CONNECT_SOCKET:
+
         var user = localStorage.getItem('user');
         var jsData = JSON.parse(user);
 
-        /* Start a new connection to the server
         if(socket != null) {
           socket.close();
-        } */
-
+        } 
 
         //Send an action that shows a "connecting..." status for now
         //store.dispatch(actions.connecting());
@@ -64,24 +66,22 @@ const socketMiddleware = (function () {
           }
 
         } 
+
+        socket.onmessage = onMessage(socket,store);
+       // socket.onclose = onClose(socket,store);
+        socket.onopen = onOpen(socket,store,jsData.token);
         break; 
-      /*
-      socket.onmessage = onMessage(socket,store);
-      socket.onclose = onClose(socket,store);
-      socket.onopen = onOpen(socket,store,action.token);
 
-        */
+      //The user wants us to disconnect
+      case 'DISCONNECTED':
+        if (socket != null) {
+          socket.close();
+        }
+        socket = null;
 
-    //The user wants us to disconnect
-    case 'DISCONNECTED':
-      if (socket != null) {
-        socket.close();
-      }
-      socket = null;
-
-      //Set our state to disconnected
-      // store.dispatch(actions.disconnected());
-      break;
+        //Set our state to disconnected
+        // store.dispatch(actions.disconnected());
+        break;
 
       //Send the 'SEND_MESSAGE' action down the websocket to the server
       case 'SEND_CHAT_MESSAGE':

@@ -9,8 +9,8 @@ export const userActions = {
     register,
     getAll,
     updateTemp,
-    testMiddleware,
     delete: _delete,
+    reconnectSocket
     
 };
 
@@ -22,6 +22,7 @@ function login(username, password) {
             .then( 
                 user => { 
                     dispatch(success(user));
+                    //dispatch(connectSocket());
                     history.push('/');
                 },
                 error => {
@@ -34,6 +35,8 @@ function login(username, password) {
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function connectSocket() {return {type: userConstants.CONNECT_SOCKET } }
+
 }
 
 function logout() {
@@ -64,6 +67,7 @@ function register(user) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+
 }
 
 function getAll() {
@@ -113,12 +117,12 @@ function updateTemp(temp) {
     
 }
 
-function testMiddleware() { 
+
+function reconnectSocket() { 
    
     return dispatch => {
-        dispatch(update());
-        
+        dispatch(connectSocket());
     };
-    function update () {return {type: 'CONNECT' } }
+    function connectSocket() {return {type: userConstants.CONNECT_SOCKET } }
     
-}
+} 

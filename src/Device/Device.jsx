@@ -12,9 +12,9 @@ import { userActions } from '../_actions';
 
 class Device extends React.Component {
 
-      componentDidMount() { 
-      this.props.dispatch(userActions.testMiddleware());        
-  }
+  /*    componentDidMount() { 
+      this.props.dispatch(userActions.reconnectSocket());
+  } */
 
     constructor(props) {
         super(props);
