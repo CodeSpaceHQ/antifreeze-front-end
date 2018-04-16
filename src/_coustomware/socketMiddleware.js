@@ -9,8 +9,8 @@ const socketMiddleware = (function () {
   const onOpen = (ws, store, token) => evt => {
     //Send a handshake, or authenticate with remote end
     socket.send(token);
-    //Tell the store we're connected
-    // store.dispatch(actions.connected());
+    
+    //store.dispatch(actions.connected());
   }
 
   const onClose = (ws, store) => evt => {

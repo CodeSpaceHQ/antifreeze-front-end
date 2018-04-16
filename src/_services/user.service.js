@@ -19,7 +19,7 @@ function login(username, password) {
 
     return fetch('http://35.226.42.111:8081/rest/auth/login', requestOptions)
         .then(response => {
-            if (!response.ok) { 
+            if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
 
@@ -32,61 +32,29 @@ function login(username, password) {
                 // wsHandler(user.token)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
+                getDevices();
             }
             return user;
         });
 }
 
-function wsHandler(token) {
-
-  //  socket.send(token)
-  /*
-    // Log messages from the server
-    connection.onmessage = function (e) {
-
-        var jsData = JSON.parse(e.data);
-
-        if(jsData['op'] == 5) {
-            console.log('Server: ' + e.data);
-
-        } else if(jsData['op'] == 1) {
-            console.log('Server: ' + e.data);
-        }
-
-    };
-        */
-
-    // Not using for the demo 
-    /* 
-
-    connection.onmessage = function (e) {
-
-        console.log(e);
-
-        var jsData = JSON.parse(e.data);
-
-        if(5 == jsData['op']) {
-            console.log('Message: Web Socket Authenticaticated, Data: ' + e.data);            
-            getDevices(token);
-
-        } else {
-
-            handleResponse(e.data);
-
-        }
-
-    }; */
-
-
-}
 
 function getDevices() {
+
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch('http://35.226.42.111:8081/rest/user/devices', requestOptions).then(handleResponse);
+    fetch(config.apiUrl + '/rest/user/devices', requestOptions)
+    .then(response => response.json())
+    .then(data => {
+
+        console.log(data.devices);
+
+    });
+
+
 }
 
 function logout() {
@@ -122,7 +90,7 @@ function register(user) {
 
     return fetch('http://35.226.42.111:8081/rest/user/create', requestOptions).then(handleResponse);
 }
- 
+
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -145,7 +113,7 @@ function _delete(id) {
 
 function handleResponse(response) {
     console.log(response);
-    if (!response.ok) { 
+    if (!response.ok) {
         return Promise.reject(response.statusText);
     }
 
