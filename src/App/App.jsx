@@ -8,7 +8,7 @@ import { PrivateRoute } from '../_components';
 import HomePage from '../HomePage/home.jsx';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
-import { GraphPage } from '../GraphPage/GraphPage.jsx';
+import GraphPage from '../GraphPage/GraphPage.jsx';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 
 class App extends React.Component {
