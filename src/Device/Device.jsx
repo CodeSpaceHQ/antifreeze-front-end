@@ -12,7 +12,8 @@ import { userActions } from '../_actions';
 
 class Device extends React.Component {
 
-      componentDidMount() {         
+      componentDidMount() { 
+      this.props.dispatch(userActions.testMiddleware());        
   }
 
     constructor(props) {

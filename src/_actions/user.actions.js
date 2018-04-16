@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     register,
     getAll,
-    temp,
+    updateTemp,
+    testMiddleware,
     delete: _delete,
     
 };
@@ -102,12 +103,22 @@ function _delete(id) {
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
 
-function temp(temp) { 
+function updateTemp(temp) { 
    
     return dispatch => {
         dispatch(update());
         
     };
     function update () {return {type: userConstants.GETEMP_REQUEST, TEMP: temp } }
+    
+}
+
+function testMiddleware() { 
+   
+    return dispatch => {
+        dispatch(update());
+        
+    };
+    function update () {return {type: 'CONNECT' } }
     
 }

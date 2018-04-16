@@ -39,8 +39,8 @@ function login(username, password) {
 
 function wsHandler(token) {
 
-    connection.send(token)
-
+  //  socket.send(token)
+  /*
     // Log messages from the server
     connection.onmessage = function (e) {
 
@@ -54,7 +54,7 @@ function wsHandler(token) {
         }
 
     };
-        
+        */
 
     // Not using for the demo 
     /* 
