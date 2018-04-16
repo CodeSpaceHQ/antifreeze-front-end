@@ -4,9 +4,9 @@ import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 class GraphPage extends React.Component {
   render() {
     return (
-      <div>
-        <h1>TEXT HERE</h1>
+      <div className="text-center">
         <ButtonAppBar />
+        
       </div>
     );
   }
