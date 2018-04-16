@@ -26,7 +26,8 @@ const socketMiddleware = (function () {
         console.log("Message: Established authenticated connection with the websocket");
         break;
       case 1 : 
-        console.log("Message: Recived a temperature update"); 
+        console.log("Message: Recived a temperature update: " + msg.temp); 
+        store.dispatch(userActions.updateTemp(msg.temp));
         break; 
       default:
         console.log("Received unknown message type: '" + msg.op + "'");
