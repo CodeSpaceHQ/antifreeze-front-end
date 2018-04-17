@@ -154,7 +154,12 @@ NestedList.propTypes = {
 };
 
 
+function mapStateToProps(state) {
+  return {
+    devices: state.devices,
+  };
+}
 
-const connectedNestedList = connect(null)(NestedList);
+const connectedNestedList = connect(mapStateToProps)(NestedList);
 
 export default withStyles(styles)(connectedNestedList);

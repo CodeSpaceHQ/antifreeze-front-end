@@ -1,4 +1,6 @@
-import { authHeader, config } from '../_helpers';
+import { authHeader, config, store } from '../_helpers';
+import { userConstants } from '../_constants';
+import { userActions } from '../_actions';
 
 export const userService = {
     login,
@@ -12,7 +14,7 @@ export const userService = {
 
 
 function login(username, password) {
-    const requestOptions = {
+    const requestOptions = { 
         method: 'POST',
         body: JSON.stringify({ email: username, password: password })
     };
@@ -50,7 +52,7 @@ function getDevices() {
     .then(response => response.json())
     .then(data => {
 
-        console.log(data.devices);
+        store.dispatch(userActions.initalizeDevices(data));
 
     });
 

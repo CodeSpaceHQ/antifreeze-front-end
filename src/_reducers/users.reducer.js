@@ -53,8 +53,25 @@ export function temperature(state = null,  action) {
   switch (action.type) {
     case userConstants.GETEMP_REQUEST:
       return action.TEMP; 
-      
+      break;
     default: 
       return state; 
     }
+}
+
+export function devices(state = [], action) {
+  switch (action.type) {
+    case userConstants.ADD_DEVICE_REQUEST: 
+      return [
+        ...state,
+        {
+          device_key: action.device_key,
+          name: action.name,
+          alarm: action.alarm
+        }
+      ];
+    default: 
+      return state; 
+  }
+
 }
