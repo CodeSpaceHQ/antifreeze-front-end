@@ -40,9 +40,14 @@ function login(username, password) {
 }
 
 function logout() {
+    
     userService.logout();
-
-    return { type: userConstants.LOGOUT };
+    return dispatch => {
+        dispatch(_logout());
+        dispatch(removeDevices());
+    };
+    function _logout() { return { type: userConstants.LOGOUT } };
+    function removeDevices() {  return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
 }
 
 function register(user) {

@@ -70,6 +70,10 @@ export function devices(state = [], action) {
           alarm: action.alarm
         }
       ];
+      break;
+    case userConstants.REMOVE_ALL_DEVICE_REQUEST: 
+    return [];
+    break;
     default: 
       return state; 
   }

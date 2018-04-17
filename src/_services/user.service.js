@@ -60,8 +60,9 @@ function getDevices() {
 }
 
 function logout() {
-    // remove user from local storage to log user out
+    // remove user and state data from local storage to log user out
     localStorage.removeItem('user');
+    localStorage.removeItem('Freeze-B-Gone:state');
 }
 
 function getAll() {

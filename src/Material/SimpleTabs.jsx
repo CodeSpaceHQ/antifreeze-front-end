@@ -16,6 +16,7 @@ import Typography from 'material-ui/Typography';
 import { Device } from '../Device';
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
+import { userService } from '../_services'
 
 const styles = theme => ({
   root: {
@@ -51,97 +52,7 @@ class NestedList extends React.Component {
           component="nav"
           subheader={<ListSubheader component="div">Devices</ListSubheader>}
         >
-          <Device />
-
-          {/*
-          <ListItem button onClick={this.handleClick(0)}>
-            <ListItemIcon>
-              <GardenIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Garden" secondary= { this.state.temp + ' °C' }/>
-            {this.state.open.indexOf(0) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(0) !== -1} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Remove Device" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Settings" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Settings">
-                    <SettingsIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            </List>
-          </Collapse>
-
-        
-          <ListItem button onClick={this.handleClick(1)}>
-            <ListItemIcon>
-              <BathRoomIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="BathRoom" secondary="20 °C" />
-            {this.state.open.indexOf(1) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(1) !== -1} timeout="auto" unmountOnExit>
-            <ListItem button className={classes.nested}>
-              <ListItemText primary="Remove Device" />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <DeleteIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemText primary="Settings" />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Settings">
-                  <SettingsIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          </Collapse>
-
-          <ListItem button onClick={this.handleClick(2)}>
-            <ListItemIcon>
-              <KitchenIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Kitchen" secondary="22 °C" />
-            {this.state.open.indexOf(2) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(2) !== -1} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Remove Device" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Settings" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Settings">
-                    <SettingsIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-            </List>
-          </Collapse>
-          */}
+         {/* <Device /> */}
 
         </List>
       </div>
