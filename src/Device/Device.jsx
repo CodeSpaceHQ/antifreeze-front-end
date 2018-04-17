@@ -16,66 +16,59 @@ class Device extends React.Component {
       this.props.dispatch(userActions.reconnectSocket());
   } */
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            open: false,
-        };
-    
-        this.handleClick = value => () => { 
-          this.setState({
-            open: !this.state.open,
-          });
-      }
+    this.state = {
+      open: false,
+    };
+
+    this.handleClick = value => () => {
+      this.setState({
+        open: !this.state.open,
+      });
     }
+  }
 
-   
 
-    render() {
 
-       
-        return (
-            <div>
-            <ListItem button onClick={this.handleClick()}>
-            <ListItemIcon>
-              <GardenIcon />
-            </ListItemIcon>
-            <ListItemText inset primary={ this.props.name } secondary= { this.props.temp + ' °C' }/>
-            {this.state.open !== false ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open !== false} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button >
-                <ListItemText primary="Remove Device" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
+  render() {
 
-              <ListItem button >
-                <ListItemText primary="Settings" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Settings">
-                    <SettingsIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            </List>
-          </Collapse>
-          </div>
-        );
-    }
+
+    return (
+      <div>
+        <ListItem button onClick={this.handleClick()}>
+          <ListItemIcon>
+            <GardenIcon />
+          </ListItemIcon>
+          <ListItemText inset primary={this.props.name} secondary={this.props.temp + ' °C'} />
+          {this.state.open !== false ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={this.state.open !== false} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button >
+              <ListItemText primary="Remove Device" />
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Delete">
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+
+            <ListItem button >
+              <ListItemText primary="Settings" />
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Settings">
+                  <SettingsIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          </List>
+        </Collapse>
+      </div>
+    );
+  }
 }
 
-function mapStateToProps(state) {
-  return {
-    temp: state.temperature,
-  };
-}
-
-
-const connectedDevice = connect(mapStateToProps)(Device);
+const connectedDevice = connect(null)(Device);
 export { connectedDevice as Device };

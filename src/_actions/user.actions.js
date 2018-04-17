@@ -112,13 +112,13 @@ function _delete(id) {
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
 
-function updateTemp(temp) {
+function updateTemp(temp, device) {
 
     return dispatch => {
         dispatch(update());
 
     };
-    function update() { return { type: userConstants.GETEMP_REQUEST, TEMP: temp } }
+    function update() { return { type: userConstants.GETEMP_REQUEST, TEMP: temp, DEVICE: device } }
 
 }
 
