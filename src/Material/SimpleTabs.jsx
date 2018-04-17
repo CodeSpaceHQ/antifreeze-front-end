@@ -50,10 +50,11 @@ class NestedList extends React.Component {
       <div>
         <List
           component="nav"
-          subheader={<ListSubheader component="div">Devices</ListSubheader>}
-        >
-         {/* <Device /> */}
-
+          subheader={<ListSubheader component="div">Devices</ListSubheader>}>
+          {
+            this.props.devices.map(device =>
+              <Device />
+          )}
         </List>
       </div>
     );
