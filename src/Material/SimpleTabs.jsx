@@ -53,7 +53,7 @@ class NestedList extends React.Component {
           subheader={<ListSubheader component="div">Devices</ListSubheader>}>
           {
             this.props.devices.map(device =>
-              <Device />
+              <Device key={device.device_key} name={device.name} alarm={device.alarm}/>
           )}
         </List>
       </div>

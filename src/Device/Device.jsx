@@ -41,7 +41,7 @@ class Device extends React.Component {
             <ListItemIcon>
               <GardenIcon />
             </ListItemIcon>
-            <ListItemText inset primary="Garden" secondary= { this.props.temp + ' °C' }/>
+            <ListItemText inset primary={ this.props.name } secondary= { this.props.temp + ' °C' }/>
             {this.state.open !== false ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={this.state.open !== false} timeout="auto" unmountOnExit>
