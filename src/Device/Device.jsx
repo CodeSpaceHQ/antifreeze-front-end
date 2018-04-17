@@ -4,7 +4,7 @@ import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } f
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import Collapse from 'material-ui/transitions/Collapse';
-import GardenIcon from 'material-ui-icons/LocalFlorist';
+import GardenIcon from 'material-ui-icons/AcUnit';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import SettingsIcon from 'material-ui-icons/Settings';
