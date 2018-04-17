@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 
@@ -6,6 +7,17 @@ class GraphPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chartData: props.chartData,
+    };
+  }
+
+  componentWillMount() {
+    this.getChartData();
+  }
+
+  getChartData() {
+    // Do API calls here
+    this.setState({
       chartData: {
         labels: ['February 1', 'March 1', 'April 1'], // date time goes here
         datasets: [
@@ -21,7 +33,7 @@ class GraphPage extends React.Component {
           },
         ],
       },
-    };
+    });
   }
 
   render() {
@@ -33,4 +45,16 @@ class GraphPage extends React.Component {
     );
   }
 }
+
+GraphPage.propTypes = {
+  chartData: PropTypes.shape({
+    labels: PropTypes.array,
+    datasets: PropTypes.array,
+  }),
+};
+
+GraphPage.defaultProps = {
+  chartData: {},
+};
+
 export default GraphPage;
