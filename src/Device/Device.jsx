@@ -5,6 +5,8 @@ import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import Collapse from 'material-ui/transitions/Collapse';
 import GardenIcon from 'material-ui-icons/AcUnit';
+import AlarmOnIcon from 'material-ui-icons/AlarmOn';
+import AlarmOffIcon from 'material-ui-icons/AlarmOff';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import SettingsIcon from 'material-ui-icons/Settings';
@@ -42,6 +44,15 @@ class Device extends React.Component {
             <GardenIcon />
           </ListItemIcon>
           <ListItemText inset primary={this.props.name} secondary={this.props.temp + ' °C'} />
+          <ListItemIcon>
+          {
+            this.props.alarm == null ? (
+              <AlarmOffIcon/>
+            ) : (
+              <AlarmOnIcon/>
+            )
+          }    
+          </ListItemIcon>
           {this.state.open !== false ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={this.state.open !== false} timeout="auto" unmountOnExit>

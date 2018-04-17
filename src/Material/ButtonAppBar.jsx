@@ -60,7 +60,6 @@ class ButtonAppBar extends React.Component {
 
   render() {
     const { classes } = this.props;
-    if (this.state.logout) {
       return (
         <div className={classes.root}>
           <AppBar position="static">
@@ -101,53 +100,10 @@ class ButtonAppBar extends React.Component {
 
         </div>
       );
-    } else {
-      return (
-
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton onClick={this.toggleDrawer} className={classes.menuButton} color="inherit" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="title" color="inherit" className={classes.flex}>
-                Freeze-B-Gone
-          </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer open={this.state.open} onClose={this.toggleDrawer}>
-            <div
-              role="button"
-              onClick={this.toggleDrawer}
-              onKeyDown={this.toggleDrawer}
-            >
-              <List style={{ width: 270 }}>
-                <ListItem>
-                  <ListItemIcon>
-                    <AboutIcon />
-                  </ListItemIcon>
-                  <ListItemText  inset primary="About" />
-
-                </ListItem>
-              </List>
-
-                <Typography style={{ "fontSize": 15, marginLeft: 18, maxWidth: 250}} align="left">
-               The purpose of this project is to design and develop a temperature
-               monitoring system which will make use of a Raspberry Pi Zero W and a 
-               temperature sensor to track and monitor temperature changes near piping
-                systems. 
-              </Typography>
-
-            </div>
-          </Drawer>
-
-        </div>
-      );
+    } 
 
     }
 
-  }
-}
 ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
