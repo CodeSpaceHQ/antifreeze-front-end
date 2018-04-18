@@ -11,6 +11,7 @@ import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 import SettingsIcon from 'material-ui-icons/Settings';
 import { userActions } from '../_actions';
+import { history } from '../_helpers';
 
 const Device = class Device extends React.Component {
 
@@ -21,15 +22,17 @@ const Device = class Device extends React.Component {
       open: false,
     };
 
-    this.redirectToGraph = value => () => {
-      window.location = '/graph';
-    };
-
     this.handleClick = value => () => {
       this.setState({
         open: !this.state.open,
       });
     };
+
+    this.redirectToGraph = this.redirectToGraph.bind(this);
+  }
+
+  redirectToGraph() {
+    history.push(`/graph/${this.props.device_key}`);
   }
 
   render() {
@@ -62,7 +65,7 @@ const Device = class Device extends React.Component {
               </ListItemSecondaryAction>
             </ListItem>
 
-            <ListItem button onClick={this.redirectToGraph()}>
+            <ListItem button onClick={this.redirectToGraph}>
               <ListItemText primary="Settings" />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Settings">
@@ -77,4 +80,4 @@ const Device = class Device extends React.Component {
   }
 }
 
-export { Device };
+export default Device;

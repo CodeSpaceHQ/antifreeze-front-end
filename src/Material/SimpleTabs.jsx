@@ -13,7 +13,7 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import Collapse from 'material-ui/transitions/Collapse';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import Typography from 'material-ui/Typography';
-import { Device } from '../Device';
+import Device from '../Device';
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 import { userService } from '../_services'
@@ -53,7 +53,7 @@ class NestedList extends React.Component {
           subheader={<ListSubheader component="div">Devices</ListSubheader>}>
           {
             this.props.devices.map(device =>
-              <Device key={device.device_key} name={device.name} alarm={device.alarm} temp={device.temp}/>
+              <Device key={device.device_key} device_key={device.device_key} name={device.name} alarm={device.alarm} temp={device.temp}/>
           )}
         </List>
       </div>

@@ -1,1 +1,1 @@
-export * from './Device.jsx';
+export { default } from './Device.jsx';

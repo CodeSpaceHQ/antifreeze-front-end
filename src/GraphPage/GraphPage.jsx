@@ -17,6 +17,7 @@ class GraphPage extends React.Component {
 
   getChartData() {
     // Do API calls here
+    // fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.key)
     this.setState({
       chartData: {
         labels: ['February 1', 'March 1', 'April 1'], // date time goes here
