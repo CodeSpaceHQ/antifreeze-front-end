@@ -22,14 +22,14 @@ const Device = class Device extends React.Component {
     };
 
     this.redirectToGraph = value => () => {
-      window.location='/graph';
-    }
-    
+      window.location = '/graph';
+    };
+
     this.handleClick = value => () => {
       this.setState({
         open: !this.state.open,
       });
-    }
+    };
   }
 
   render() {
