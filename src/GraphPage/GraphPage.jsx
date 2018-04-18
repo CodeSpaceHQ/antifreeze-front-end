@@ -16,8 +16,22 @@ class GraphPage extends React.Component {
   }
 
   getChartData() {
-    // Do API calls here
-    // fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.key)
+    let user = JSON.parse(localStorage.getItem('user'));
+    fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.match.params.device_key,{
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'Bearer ' + user.token,
+      }),
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+      });
+
+
+    // Hardcoding in graph data
     this.setState({
       chartData: {
         labels: ['February 1', 'March 1', 'April 1'], // date time goes here
