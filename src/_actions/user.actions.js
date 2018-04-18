@@ -13,7 +13,8 @@ export const userActions = {
     reconnectSocket,
     initalizeDevices,
     addDevice,
-    updateAlarm
+    updateAlarm,
+    receiveTempHist
 };
 
 function login(username, password) {
@@ -133,6 +134,17 @@ function updateAlarm(alarm, device) {
     function update() { return { type: userConstants.UPDATE_ALARM_REQUEST, ALARM: alarm, DEVICE: device } }
 
 }
+
+function receiveTempHist(device_id) {
+
+    temp_hist =  getTempHistory(device_id)
+    return dispatch => {
+        dispatch(receive(temp_hist));
+    };
+    function receive(tempHist) { return { type: userConstants.UPDATE_TEMP_HIST, TEMP_HIST: tempHist } }
+
+}
+
 
 function reconnectSocket() {
 

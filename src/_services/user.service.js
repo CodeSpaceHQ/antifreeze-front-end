@@ -9,7 +9,8 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete. 
+    getTempHistory
 };
 
 
@@ -56,6 +57,20 @@ function getDevices() {
 
     });
 
+}
+
+function getTempHistory(device_key) {
+
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    fetch(config.apiUrl + '/rest/device/temp/' + device_key, requestOptions)
+    .then(response => response.json())
+    .then(data => {
+       return data; 
+    });
 
 }
 
