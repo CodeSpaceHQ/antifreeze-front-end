@@ -13,6 +13,10 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import Collapse from 'material-ui/transitions/Collapse';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import Typography from 'material-ui/Typography';
+import { Device } from '../Device';
+import { userActions } from '../_actions';
+import { connect } from 'react-redux';
+import { userService } from '../_services'
 
 const styles = theme => ({
   root: {
@@ -29,142 +33,28 @@ const styles = theme => ({
 
 class NestedList extends React.Component {
 
+  componentDidMount() {
+    this.props.dispatch(userActions.reconnectSocket());
+  }
+
+
   constructor() {
     super()
-
-    this.state = {
-      open: [-1],
-      temp: 20,
-    };
-
-    connection.onmessage = function (e) {
-      var jsData = JSON.parse(e.data);
-
-      if(jsData['op'] == 1) {
-        this.setState({temp: jsData['temp']});
-      }
-  
-  }.bind(this);
-
-    this.handleClick = value => () => {
-      const { open } = this.state;
-      const currentIndex = open.indexOf(value);
-      const newOpen = [...open];
-      this.setState({ open: !this.state.open });
-
-      if (currentIndex === -1) {
-        newOpen.push(value);
-      } else {
-        newOpen.splice(currentIndex, 1);
-      }
-
-      this.setState({
-        open: newOpen,
-      });
-
-    };
 
 
   }
   render() {
-    const { classes } = this.props;
-    const { expanded } = this.state;
+
 
     return (
-      <div className={classes.root}>
+      <div>
         <List
           component="nav"
-          subheader={<ListSubheader component="div">Devices</ListSubheader>}
-        >
-          <ListItem button onClick={this.handleClick(0)}>
-            <ListItemIcon>
-              <GardenIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Garden" secondary= { this.state.temp + ' °C' }/>
-            {this.state.open.indexOf(0) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(0) !== -1} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Remove Device" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Settings" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Settings">
-                    <SettingsIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            </List>
-          </Collapse>
-
-          {/*
-          <ListItem button onClick={this.handleClick(1)}>
-            <ListItemIcon>
-              <BathRoomIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="BathRoom" secondary="20 °C" />
-            {this.state.open.indexOf(1) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(1) !== -1} timeout="auto" unmountOnExit>
-            <ListItem button className={classes.nested}>
-              <ListItemText primary="Remove Device" />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <DeleteIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemText primary="Settings" />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Settings">
-                  <SettingsIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          </Collapse>
-
-          <ListItem button onClick={this.handleClick(2)}>
-            <ListItemIcon>
-              <KitchenIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Kitchen" secondary="22 °C" />
-            {this.state.open.indexOf(2) !== -1 ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open.indexOf(2) !== -1} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Remove Device" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Settings" />
-                <ListItemSecondaryAction>
-                  <IconButton aria-label="Settings">
-                    <SettingsIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-
-            </List>
-          </Collapse>
-          */}
-
+          subheader={<ListSubheader component="div">Devices</ListSubheader>}>
+          {
+            this.props.devices.map(device =>
+              <Device key={device.device_key} name={device.name} alarm={device.alarm} temp={device.temp}/>
+          )}
         </List>
       </div>
     );
@@ -175,4 +65,13 @@ NestedList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NestedList);
+
+function mapStateToProps(state) {
+  return {
+    devices: state.devices,
+  };
+}
+
+const connectedNestedList = connect(mapStateToProps)(NestedList);
+
+export default withStyles(styles)(connectedNestedList);

@@ -11,7 +11,7 @@ export function users(state = {}, action) {
         items: action.users
       };
     case userConstants.GETALL_FAILURE:
-      return { 
+      return {
         error: action.error
       };
     case userConstants.DELETE_REQUEST:
@@ -45,6 +45,50 @@ export function users(state = {}, action) {
         })
       };
     default:
-      return state
+      return state;
   }
+}
+
+
+export function devices(state = [], action) {
+  switch (action.type) {
+    case userConstants.ADD_DEVICE_REQUEST:
+      return [
+        ...state,
+        {
+          device_key: action.device_key,
+          name: action.name,
+          alarm: action.alarm,
+          temp: null
+        }
+      ];
+      break;
+    case userConstants.REMOVE_ALL_DEVICE_REQUEST:
+      return [];
+      break;
+    case userConstants.UPDATE_ALARM_REQUEST:
+      return state.map(device => {
+        if (device.device_key != action.DEVICE) {
+          return device;
+        }
+        return {
+          ...device,
+          alarm: action.ALARM        };
+      });
+      break;
+    case userConstants.GETEMP_REQUEST:
+      return state.map(device => {
+        if (device.device_key != action.DEVICE) {
+          return device;
+        }
+        return {
+          ...device,
+          temp: action.TEMP
+        };
+      });
+      break;
+    default:
+      return state;
+  }
+
 }

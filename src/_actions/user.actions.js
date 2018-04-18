@@ -8,17 +8,23 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    updateTemp,
+    delete: _delete,
+    reconnectSocket,
+    initalizeDevices,
+    addDevice,
+    updateAlarm
 };
 
 function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
- 
+
         userService.login(username, password)
             .then(
-                user => { 
+                user => {
                     dispatch(success(user));
+                    //dispatch(connectSocket());
                     history.push('/');
                 },
                 error => {
@@ -31,20 +37,28 @@ function login(username, password) {
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function connectSocket() { return { type: userConstants.CONNECT_SOCKET } }
+
 }
 
 function logout() {
+
     userService.logout();
-    return { type: userConstants.LOGOUT };
+    return dispatch => {
+        dispatch(_logout());
+        dispatch(removeDevices());
+    };
+    function _logout() { return { type: userConstants.LOGOUT } };
+    function removeDevices() { return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
 }
 
 function register(user) {
-    return dispatch => { 
+    return dispatch => {
         dispatch(request(user));
 
         userService.register(user)
             .then(
-                user => { 
+                user => {
                     dispatch(success());
                     history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
@@ -60,6 +74,7 @@ function register(user) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+
 }
 
 function getAll() {
@@ -85,7 +100,7 @@ function _delete(id) {
 
         userService.delete(id)
             .then(
-                user => { 
+                user => {
                     dispatch(success(id));
                 },
                 error => {
@@ -98,3 +113,51 @@ function _delete(id) {
     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
 }
+
+function updateTemp(temp, device) {
+
+    return dispatch => {
+        dispatch(update());
+
+    };
+    function update() { return { type: userConstants.GETEMP_REQUEST, TEMP: temp, DEVICE: device } }
+
+}
+
+function updateAlarm(alarm, device) {
+
+    return dispatch => {
+        dispatch(update());
+
+    };
+    function update() { return { type: userConstants.UPDATE_ALARM_REQUEST, ALARM: alarm, DEVICE: device } }
+
+}
+
+function reconnectSocket() {
+
+    return dispatch => {
+        dispatch(connectSocket());
+    };
+    function connectSocket() { return { type: userConstants.CONNECT_SOCKET } }
+
+}
+
+function initalizeDevices(deviceArray) {
+
+    return dispatch => {
+        deviceArray.devices.map(device => {
+            dispatch(addDevice(device.device_key, device.name, device.alarm));
+        });
+    };
+
+}
+
+function addDevice(this_device_key, this_name, this_alarm) {
+    return {
+        type: userConstants.ADD_DEVICE_REQUEST, device_key: this_device_key,
+        name: this_name, alarm: this_alarm
+    }
+}
+
+

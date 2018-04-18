@@ -1,4 +1,6 @@
-import { authHeader, config } from '../_helpers';
+import { authHeader, config, store } from '../_helpers';
+import { userConstants } from '../_constants';
+import { userActions } from '../_actions';
 
 export const userService = {
     login,
@@ -9,16 +11,17 @@ export const userService = {
     update,
     delete: _delete
 };
- 
+
+
 function login(username, password) {
-    const requestOptions = {
+    const requestOptions = { 
         method: 'POST',
         body: JSON.stringify({ email: username, password: password })
     };
 
     return fetch('http://35.226.42.111:8081/rest/auth/login', requestOptions)
         .then(response => {
-            if (!response.ok) { 
+            if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
 
@@ -28,54 +31,38 @@ function login(username, password) {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
                 console.log("Token: " + user.token)
-                wsHandler(user.token)
+                // wsHandler(user.token)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
+                getDevices();
             }
             return user;
         });
 }
 
-function wsHandler(token) {
-
-    connection.send(token)
-
-    // Not using for the demo 
-    /* 
-
-    connection.onmessage = function (e) {
-
-        console.log(e);
-
-        var jsData = JSON.parse(e.data);
-
-        if(5 == jsData['op']) {
-            console.log('Message: Web Socket Authenticaticated, Data: ' + e.data);            
-            getDevices(token);
-
-        } else {
-
-            handleResponse(e.data);
-
-        }
-
-    }; */
-
-
-}
 
 function getDevices() {
+
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch('http://35.226.42.111:8081/rest/user/devices', requestOptions).then(handleResponse);
+    fetch(config.apiUrl + '/rest/user/devices', requestOptions)
+    .then(response => response.json())
+    .then(data => {
+
+        store.dispatch(userActions.initalizeDevices(data));
+
+    });
+
+
 }
 
 function logout() {
-    // remove user from local storage to log user out
+    // remove user and state data from local storage to log user out
     localStorage.removeItem('user');
+    localStorage.removeItem('Freeze-B-Gone:state');
 }
 
 function getAll() {
@@ -106,7 +93,7 @@ function register(user) {
 
     return fetch('http://35.226.42.111:8081/rest/user/create', requestOptions).then(handleResponse);
 }
- 
+
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -129,7 +116,7 @@ function _delete(id) {
 
 function handleResponse(response) {
     console.log(response);
-    if (!response.ok) { 
+    if (!response.ok) {
         return Promise.reject(response.statusText);
     }
 

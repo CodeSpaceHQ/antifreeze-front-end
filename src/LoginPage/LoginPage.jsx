@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
 import Particles from 'react-particles-js';
-import ButtonAppBar from '../Material/ButtonAppBar.jsx'
 
 
 class LoginPage extends React.Component {
@@ -163,7 +162,6 @@ class LoginPage extends React.Component {
         const { username, password, submitted } = this.state;
         return (
             <div>
-            <ButtonAppBar/>
             <Particles
             params={this.params}
             style={this.style}>
