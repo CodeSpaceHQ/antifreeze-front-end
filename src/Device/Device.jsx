@@ -12,11 +12,7 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import SettingsIcon from 'material-ui-icons/Settings';
 import { userActions } from '../_actions';
 
-class Device extends React.Component {
-
-  /*    componentDidMount() { 
-      this.props.dispatch(userActions.reconnectSocket());
-  } */
+const Device = class Device extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,8 +28,6 @@ class Device extends React.Component {
     }
   }
 
-
-
   render() {
 
 
@@ -45,13 +39,13 @@ class Device extends React.Component {
           </ListItemIcon>
           <ListItemText inset primary={this.props.name} secondary={this.props.temp + ' °C'} />
           <ListItemIcon>
-          {
-            this.props.alarm == null ? (
-              <AlarmOffIcon/>
-            ) : (
-              <AlarmOnIcon/>
-            )
-          }    
+            {
+              this.props.alarm == null ? (
+                <AlarmOffIcon />
+              ) : (
+                  <AlarmOnIcon />
+                )
+            }
           </ListItemIcon>
           {this.state.open !== false ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
@@ -81,5 +75,4 @@ class Device extends React.Component {
   }
 }
 
-const connectedDevice = connect(null)(Device);
-export { connectedDevice as Device };
+export { Device };
