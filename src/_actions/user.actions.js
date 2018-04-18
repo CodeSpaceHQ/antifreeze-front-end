@@ -154,7 +154,10 @@ function initalizeDevices(deviceArray) {
 }
 
 function addDevice(this_device_key, this_name, this_alarm) {
-    return { type: userConstants.ADD_DEVICE_REQUEST, device_key: this_device_key, name: this_name, alarm: this_alarm }
+    return {
+        type: userConstants.ADD_DEVICE_REQUEST, device_key: this_device_key,
+        name: this_name, alarm: this_alarm
+    }
 }
 
 
