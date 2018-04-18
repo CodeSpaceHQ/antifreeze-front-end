@@ -66,6 +66,16 @@ export function devices(state = [], action) {
     case userConstants.REMOVE_ALL_DEVICE_REQUEST:
       return [];
       break;
+    case userConstants.UPDATE_ALARM_REQUEST:
+      return state.map(device => {
+        if (device.device_key != action.DEVICE) {
+          return device;
+        }
+        return {
+          ...device,
+          alarm: action.ALARM        };
+      });
+      break;
     case userConstants.GETEMP_REQUEST:
       return state.map(device => {
         if (device.device_key != action.DEVICE) {

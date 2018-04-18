@@ -11,7 +11,9 @@ export const userActions = {
     updateTemp,
     delete: _delete,
     reconnectSocket,
-    initalizeDevices
+    initalizeDevices,
+    addDevice,
+    updateAlarm
 };
 
 function login(username, password) {
@@ -40,14 +42,14 @@ function login(username, password) {
 }
 
 function logout() {
-    
+
     userService.logout();
     return dispatch => {
         dispatch(_logout());
         dispatch(removeDevices());
     };
     function _logout() { return { type: userConstants.LOGOUT } };
-    function removeDevices() {  return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
+    function removeDevices() { return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
 }
 
 function register(user) {
@@ -122,6 +124,15 @@ function updateTemp(temp, device) {
 
 }
 
+function updateAlarm(alarm, device) {
+
+    return dispatch => {
+        dispatch(update());
+
+    };
+    function update() { return { type: userConstants.UPDATE_ALARM_REQUEST, ALARM: alarm, DEVICE: device } }
+
+}
 
 function reconnectSocket() {
 
@@ -140,8 +151,10 @@ function initalizeDevices(deviceArray) {
         });
     };
 
-    function addDevice(this_device_key, this_name, this_alarm) {
-        return { type: userConstants.ADD_DEVICE_REQUEST, device_key: this_device_key, name: this_name, alarm: this_alarm }
-    }
-
 }
+
+function addDevice(this_device_key, this_name, this_alarm) {
+    return { type: userConstants.ADD_DEVICE_REQUEST, device_key: this_device_key, name: this_name, alarm: this_alarm }
+}
+
+

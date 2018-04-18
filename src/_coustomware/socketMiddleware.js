@@ -9,7 +9,7 @@ const socketMiddleware = (function () {
   const onOpen = (ws, store, token) => evt => {
     //Send a handshake, or authenticate with remote end
     socket.send(token);
-    
+
     //store.dispatch(actions.connected());
   }
 
@@ -21,17 +21,55 @@ const socketMiddleware = (function () {
   const onMessage = (ws, store) => evt => {
     //Parse the JSON message received on the websocket
     var msg = JSON.parse(evt.data);
-    switch (msg.op) {
-      case 5 :
-        console.log("Message: Established authenticated connection with the websocket");
+    switch (msg.sub) {
+      case '/auth':
+        switch (msg.op) {
+          case 5:
+            console.log("Message: Authenticated with the websocket.");
+            break;
+          case 4:
+            console.log("Message: Failed to authenticate with the websocket. Error: '" + msg.message + "'");
+            break;
+          default:
+            console.log("Received an unknown operation type: '" + msg.op + "'");
+            break;
+        };
         break;
-      case 1 : 
-        console.log("Message: Recived a temperature update: ");
-        console.log(msg); 
-        store.dispatch(userActions.updateTemp(msg.temp, msg.device_key)); 
-        break; 
+      case '/device':
+        switch (msg.op) {
+          case 1:
+            console.log("Message: Received a device update.");
+            store.dispatch(userActions.addDevice(msg.device_key, msg.name, msg.alarm));
+            break;
+          default:
+            console.log("Received unknown operation type: '" + msg.op + "'");
+            break;
+        };
+        break;
+      case '/device/temp':
+        switch (msg.op) {
+          case 1:
+            console.log("Message: Received a temperature update.");
+            store.dispatch(userActions.updateTemp(msg.temp, msg.device_key));
+            break;
+          default:
+            console.log("Received unknown operation type: '" + msg.op + "'");
+            break;
+        };
+        break;
+      case '/device/alarm':
+        switch (msg.op) {
+          case 3:
+            console.log("Message: Received an alarm update.");
+            store.dispatch(userActions.updateAlarm(msg.alarm, msg.device_key));
+            break;
+          default:
+            console.log("Received unknown operation type: '" + msg.op + "'");
+            break;
+        };
+        break;
       default:
-        console.log("Received unknown message type: '" + msg.op + "'");
+        console.log("Received unknown message type: '" + msg.sub + "'");
         break;
     }
   }
@@ -44,9 +82,9 @@ const socketMiddleware = (function () {
         var user = localStorage.getItem('user');
         var jsData = JSON.parse(user);
 
-        if(socket != null) {
+        if (socket != null) {
           socket.close();
-        } 
+        }
 
         //Send an action that shows a "connecting..." status for now
         //store.dispatch(actions.connecting());
@@ -67,12 +105,12 @@ const socketMiddleware = (function () {
             console.log('Server: ' + e.data);
           }
 
-        } 
+        }
 
-        socket.onmessage = onMessage(socket,store);
-       // socket.onclose = onClose(socket,store);
-        socket.onopen = onOpen(socket,store,jsData.token);
-        break; 
+        socket.onmessage = onMessage(socket, store);
+        // socket.onclose = onClose(socket,store);
+        socket.onopen = onOpen(socket, store, jsData.token);
+        break;
 
       //The user wants us to disconnect
       case 'DISCONNECTED':
