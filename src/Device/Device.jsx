@@ -21,6 +21,10 @@ const Device = class Device extends React.Component {
       open: false,
     };
 
+    this.redirectToGraph = value => () => {
+      window.location='/graph';
+    }
+    
     this.handleClick = value => () => {
       this.setState({
         open: !this.state.open,
@@ -29,8 +33,6 @@ const Device = class Device extends React.Component {
   }
 
   render() {
-
-
     return (
       <div>
         <ListItem button onClick={this.handleClick()}>
@@ -60,13 +62,13 @@ const Device = class Device extends React.Component {
               </ListItemSecondaryAction>
             </ListItem>
 
-            <ListItem button >
+            <ListItem button onClick={this.redirectToGraph()}>
               <ListItemText primary="Settings" />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Settings">
                   <SettingsIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
+                </IconButton >
+              </ListItemSecondaryAction >
             </ListItem>
           </List>
         </Collapse>
