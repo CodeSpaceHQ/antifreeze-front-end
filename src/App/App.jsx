@@ -33,10 +33,11 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" component={HomePage} /> 
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
-                                <Route path="/graph/:device_key" component={GraphPage} />
                                 {alert.message &&
                                 <div className={`alert ${alert.type}`}>{alert.message} </div>
                                 }
+                                <Route path="/graph/:device_key" component={GraphPage} />
+                           
                             </div>
                         </Router> 
     

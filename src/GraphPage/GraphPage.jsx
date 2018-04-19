@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
+import { authHeader } from '../_helpers';
 
 class GraphPage extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class GraphPage extends React.Component {
       chartData: props.chartData,
     };
   }
-
+  
   componentWillMount() {
     this.getChartData();
   }
@@ -19,9 +20,7 @@ class GraphPage extends React.Component {
     let user = JSON.parse(localStorage.getItem('user'));
     fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.match.params.device_key,{
       method: 'GET',
-      headers: new Headers({
-        'Authorization': 'Bearer ' + user.token,
-      }),
+      headers: authHeader(),
     })
       .then(function(response) {
         return response.json();
@@ -43,6 +42,7 @@ class GraphPage extends React.Component {
               20,
               23,
               25,
+              30
             ],
             backgroundColor: 'rgba(0,0,255,.7)',
           },
