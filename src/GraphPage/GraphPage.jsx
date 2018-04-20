@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 import { authHeader } from '../_helpers';
+import { store } from '../_helpers';
 
 class GraphPage extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class GraphPage extends React.Component {
 
   getChartData() {
     let user = JSON.parse(localStorage.getItem('user'));
-    fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.match.params.device_key,{
+    fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.location.state.device_id,{
       method: 'GET',
       headers: authHeader(),
     })

@@ -32,7 +32,11 @@ const Device = class Device extends React.Component {
   }
 
   redirectToGraph() {
-    history.push(`/graph/${this.props.device_key}`);
+    history.push({
+      pathname: '/graph',
+      state: { device_id: this.props.device_key }
+    }
+    );
   }
 
   render() {
