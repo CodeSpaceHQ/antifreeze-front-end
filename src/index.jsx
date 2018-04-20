@@ -15,6 +15,10 @@ if (Notification && Notification.permission === 'default') {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
     .then(() => {
+      const data = JSON.parse(localStorage.getItem('user'));
+      const { token } = data;
+
+      navigator.serviceWorker.controller.postMessage(token);
       console.log('Successfully registered SW');
     })
     .catch((err) => {
