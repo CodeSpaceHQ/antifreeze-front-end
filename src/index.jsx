@@ -1,16 +1,30 @@
 import React from 'react';
-import { render } from 'react-dom'
-import { HashRouter, Route, IndexRoute, hashHistory } from 'react-router-dom'
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './_helpers';
 import { App } from './App';
 
-// Initaial Unauthorized Websocket Connection
+if (Notification && Notification.permission === 'default') {
+  Notification.requestPermission((permission) => {
+    if (!('permission' in Notification)) {
+      Notification.permission = permission;
+    }
+  });
+}
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(() => {
+      console.log('Successfully registered SW');
+    })
+    .catch((err) => {
+      console.log('Error registering SW: ', err);
+    });
+}
 
 render(
-      <Provider store={store}>
-          <App />
-      </Provider>,
-      document.getElementById('app')
-  );
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app'),
+);
