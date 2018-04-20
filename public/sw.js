@@ -17,7 +17,43 @@ function onOpen(socket, token) {
 }
 
 function onMessage(event) {
-  show(event.data);
+  const msg = JSON.parse(event.data);
+  console.log(msg);
+
+  switch (msg.sub) {
+    case '/auth':
+      console.log('SW WebSocket successfully authenticated');
+      break;
+    case '/device':
+      switch (msg.op) {
+        case 1:
+          show(msg);
+          break;
+        default:
+          console.log(`SW received unknown op type ${msg.op} in sub type ${msg.sub}`);
+      }
+      break;
+    case '/device/temp':
+      switch (msg.op) {
+        case 1:
+          show(msg);
+          break;
+        default:
+          console.log(`SW received unknown op type ${msg.op} in sub type ${msg.sub}`);
+      }
+      break;
+    case '/device/alarm':
+      switch (msg.op) {
+        case 3:
+          show(msg);
+          break;
+        default:
+          console.log(`SW received unknown op type ${msg.op} in sub type ${msg.sub}`);
+      }
+      break;
+    default:
+      console.log(`SW received unknown sub type ${msg.sub}`);
+  }
 }
 
 self.addEventListener('message', (event) => {
