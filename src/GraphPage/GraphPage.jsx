@@ -4,6 +4,7 @@ import { Line } from 'react-chartjs-2';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 import { authHeader } from '../_helpers';
 import { store } from '../_helpers';
+import Pick from './TempPicker.jsx';
 
 class GraphPage extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class GraphPage extends React.Component {
       <div className='text-center'>
         <ButtonAppBar />
         <Line data={this.state.chartData} />
+        <Pick/>
       </div>
     );
   }

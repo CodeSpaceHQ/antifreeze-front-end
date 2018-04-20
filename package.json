@@ -43,19 +43,25 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "chart.js": "^2.7.2",
+    "es6": "^0.0.7",
+    "es6-docready": "^1.0.0",
+    "es6-dom": "^1.1.0",
     "loglevel": "^1.6.1",
     "material-ui": "^material-ui@next",
     "material-ui-icons": "^1.0.0-beta.36",
+    "picker": "^0.1.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-chartjs-2": "^2.7.0",
     "react-dom": "^16.2.0",
     "react-particles-js": "^2.1.0",
+    "react-picker": "^1.2.11",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "ya": "^0.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -1865,6 +1865,14 @@ es5-ext@^0.10.14, es5-ext@^0.10.35, es5-ext@^0.10.9, es5-ext@~0.10.14:
     es6-iterator "~2.0.3"
     es6-symbol "~3.1.1"
 
+es6-docready@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/es6-docready/-/es6-docready-1.0.0.tgz#97774e9e1b6dd1510038763ff726d7b60120b645"
+
+es6-dom@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/es6-dom/-/es6-dom-1.1.0.tgz#024b23ee0b31683f5adc068ed54c69a51060f772"
+
 es6-iterator@^2.0.1, es6-iterator@~2.0.1, es6-iterator@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/es6-iterator/-/es6-iterator-2.0.3.tgz#a7de889141a05a94b0854403b2d0a0fbfa98f3b7"
@@ -1905,6 +1913,10 @@ es6-symbol@3.1.1, es6-symbol@^3.1.1, es6-symbol@~3.1.1:
     d "1"
     es5-ext "~0.10.14"
 
+es6-viewpoint@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/es6-viewpoint/-/es6-viewpoint-0.1.3.tgz#9b1b99a286b618d6d6b71f1503deb0d0a7869dc5"
+
 es6-weak-map@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/es6-weak-map/-/es6-weak-map-2.0.2.tgz#5e3ab32251ffd1538a1f8e5ffa1357772f92d96f"
@@ -1913,6 +1925,10 @@ es6-weak-map@^2.0.1:
     es5-ext "^0.10.14"
     es6-iterator "^2.0.1"
     es6-symbol "^3.1.1"
+
+es6@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/es6/-/es6-0.0.7.tgz#3b2851afeea60db16cf569d56066daa0f3974676"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -3664,7 +3680,7 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
 
-minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
+minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4, minimatch@~3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
@@ -4106,6 +4122,10 @@ performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
+picker@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/picker/-/picker-0.1.4.tgz#101b890d34dc387823236af9ba7067660b48d9e8"
+
 pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -4373,6 +4393,13 @@ react-particles-js@^2.1.0:
   dependencies:
     lodash.clonedeep "^4.5.0"
 
+react-picker@^1.2.11:
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/react-picker/-/react-picker-1.2.11.tgz#15d967762746f9103e6121b5ce06acb44b5e9938"
+  dependencies:
+    es6-viewpoint "^0.1.3"
+    react-tapper "^0.1.15"
+
 react-popper@^0.8.0:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.2.tgz#092095ff13933211d3856d9f325511ec3a42f12c"
@@ -4422,6 +4449,10 @@ react-scrollbar-size@^2.0.2:
     prop-types "^15.6.0"
     react-event-listener "^0.5.1"
     stifle "^1.0.2"
+
+react-tapper@^0.1.15:
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/react-tapper/-/react-tapper-0.1.16.tgz#d5fb60e250aa9dc43c07d1120e6b399cbdc65bd3"
 
 react-transition-group@^2.2.1:
   version "2.2.1"
@@ -5706,6 +5737,12 @@ xtend@^4.0.0:
 y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+
+ya@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ya/-/ya-0.2.2.tgz#721427835736f11ed49ea05d8f3f70c7d5bccb1b"
+  dependencies:
+    minimatch "~3.0.4"
 
 yallist@^2.1.2:
   version "2.1.2"
