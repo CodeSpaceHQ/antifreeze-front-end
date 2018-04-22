@@ -42,16 +42,15 @@ function SimpleCard(props) {
       <Card className={classes.card}>
       <CardMedia
           className={classes.media}
-          image="notifications.png"
+          image="notifications.jpg"
           title="Contemplative Reptile"
         />
-
         <CardContent style= {{paddingBottom: '0px'}}>
-        <Typography gutterBottom variant="headline" component="h2">
-        Temperature Alert
+        <Typography style={{color:'Tomato'}} gutterBottom variant="headline" component="h2">
+        Low Temperature Alert
         </Typography>
         </CardContent>
-        <CardActions  style= {{padding: '0px 4px', paddingBottom: '30px'}}>
+        <CardActions  style= {{padding: '0px 4px', marginLeft: '18%', paddingBottom: '10px'}}>
         {<Switch/>}
         </CardActions>
       </Card>

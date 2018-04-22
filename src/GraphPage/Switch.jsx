@@ -24,7 +24,7 @@ class SwitchLabels extends React.Component {
 
     return (
         <div>
-        <FormControlLabel style={{float: 'left',  marginLeft: '0px', marginBottom: '0px'}}
+        <FormControlLabel style={{float: 'left',  marginLeft: '12px', marginBottom: '0px'}}
           control={
             <Switch  
               checked={this.state.checkedF}
@@ -32,7 +32,7 @@ class SwitchLabels extends React.Component {
               value="checked"
             /> 
           }
-          label="Push Notifications"
+          label="Enable Push Notifications"
         />
         { this.state.checked ? <TempSelect/> : null }
         
