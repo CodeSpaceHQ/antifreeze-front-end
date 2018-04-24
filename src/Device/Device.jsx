@@ -70,8 +70,8 @@ const Device = class Device extends React.Component {
               <ListItemSecondaryAction>
                 <IconButton aria-label="Settings">
                   <SettingsIcon />
-                </IconButton >
-              </ListItemSecondaryAction >
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           </List>
         </Collapse>
