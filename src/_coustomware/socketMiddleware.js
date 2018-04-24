@@ -26,6 +26,11 @@ const socketMiddleware = (function () {
         switch (msg.op) {
           case 5:
             console.log("Message: Authenticated with the websocket.");
+
+            const data = JSON.parse(localStorage.getItem('user'));
+            const { token } = data;
+            navigator.serviceWorker.controller.postMessage(token);
+
             break;
           case 4:
             console.log("Message: Failed to authenticate with the websocket. Error: '" + msg.message + "'");
