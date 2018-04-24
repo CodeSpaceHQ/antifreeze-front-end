@@ -9,10 +9,12 @@ class GraphPage extends React.Component {
     this.state = {
       chartData: props.chartData,
     };
+    this.setChartData = this.setChartData.bind(this);
   }
 
   componentWillMount() {
     this.getChartData();
+    this.setChartData();
   }
 
   getChartData() {
@@ -23,15 +25,15 @@ class GraphPage extends React.Component {
         'Authorization': 'Bearer ' + user.token,
       }),
     })
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(myJson) {
-        console.log(myJson);
+      .then(function (myJson) {
+        console.log(myJson); // for testing purposes only
       });
+  }
 
-
-    // Hardcoding in graph data
+  setChartData() {
     this.setState({
       chartData: {
         labels: ['February 1', 'March 1', 'April 1'], // date time goes here
