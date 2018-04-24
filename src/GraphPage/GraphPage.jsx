@@ -31,8 +31,9 @@ class GraphPage extends React.Component {
         var times = [];
         for (var i = 0; i < myJson.temps.length; i++) {
           temps.push(myJson.temps[i].temp);
-          // convert dates to meaningful values
-          times.push(myJson.temps[i].date);
+          // convert milliseconds to date
+          const d = new Date(myJson.temps[i].date).toLocaleString();
+          times.push(d);
         }
         this.setChartData(temps, times);
       });
