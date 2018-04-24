@@ -28,24 +28,29 @@ class GraphPage extends React.Component {
       .then(function (response) {
         return response.json();
       })
-      .then(function (myJson) {
-        console.log(myJson); // for testing purposes only
+      .catch(error => console.error('Error:', error))
+      .then((myJson) => {
+        var temps = [];
+        var times = [];
+        for (var i = 0; i < myJson.temps.length; i++) {
+          temps.push(myJson.temps[i].temp);
+          // convert dates to meaningful values
+          times.push(myJson.temps[i].date);
+        }
+        // setChartData(temps, times);
+        this.setChartData(temps, times);
       });
   }
 
-  setChartData() {
+  setChartData(temps, times) {
     this.setState({
       chartData: {
-        labels: ['February 1', 'March 1', 'April 1'], // date time goes here
+        labels: times, // date time goes here
         datasets: [
           {
             label: 'Temperature',
             // temp data goes here
-            data: [
-              20,
-              23,
-              25,
-            ],
+            data: temps,
             backgroundColor: 'rgba(0,0,255,.7)',
           },
         ],
