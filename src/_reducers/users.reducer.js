@@ -49,6 +49,15 @@ export function users(state = {}, action) {
   }
 }
 
+export function history(state = null, action) {
+  switch (action.type) {
+    case userConstants.GETEMP_REQUEST:
+      return action.TEMP_HIST
+      break; 
+    default: 
+      return state; 
+  }
+}
 
 export function devices(state = [], action) {
   switch (action.type) {
