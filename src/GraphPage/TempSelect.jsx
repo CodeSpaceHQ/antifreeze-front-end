@@ -8,10 +8,9 @@ import Select from 'material-ui/Select';
 const styles = theme => ({
   root: {
     display: 'inherit',
-    paddingLeft: '15px',
   },
   formControl: {
-    minWidth: '150px',
+    minWidth: '160px',
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -39,17 +38,16 @@ class NativeSelect extends React.Component {
     return (
       <div className={classes.root}>       
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-helper">O °C</InputLabel>
           <Select
             native
             value={this.state.age}
             onChange={this.handleChange('age')}
             input={<Input id="age-native-helper" />}
           >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
+            <option value="" > {this.props.alarm} °C </option>
+
+            { Array.from(new Array(70),(val,index)=>index).map( digit => <option key = {digit} value={digit - 50}> {digit - 50} °C </option>) }
+         
           </Select>
           <FormHelperText>Threshold Temperature for Notification</FormHelperText>
         </FormControl>

@@ -57,7 +57,7 @@ class GraphPage extends React.Component {
     return (
       <div className='text-center'>
         <ButtonAppBar />
-        <TempCard />
+        <TempCard device_id = {this.props.location.state.device_id} alarm = { this.props.location.state.alarm }/>
         <Line data={this.state.chartData} />
       </div>
     );

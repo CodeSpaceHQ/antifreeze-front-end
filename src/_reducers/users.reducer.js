@@ -84,7 +84,10 @@ export function devices(state = [], action) {
           ...device,
           alarm: action.ALARM        };
       });
-      break;
+      break; 
+    case userConstants.SET_ALARM_REQUEST:
+      return state;
+      break; 
     case userConstants.GETEMP_REQUEST:
       return state.map(device => {
         if (device.device_key != action.DEVICE) {

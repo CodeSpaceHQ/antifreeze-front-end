@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
-import Switch from './Switch.jsx';
+import { SwitchLabels } from './Switch.jsx';
 
 const styles = {
   card: {
@@ -43,15 +42,9 @@ function SimpleCard(props) {
       <CardMedia
           className={classes.media}
           image="notifications.jpg"
-          title="Contemplative Reptile"
         />
-        <CardContent style= {{paddingBottom: '0px'}}>
-        <Typography style={{color:'Tomato'}} gutterBottom variant="headline" component="h2">
-        Low Temperature Alert
-        </Typography>
-        </CardContent>
-        <CardActions  style= {{padding: '0px 4px', marginLeft: '18%', paddingBottom: '10px'}}>
-        {<Switch/>}
+        <CardActions >
+        <SwitchLabels device_id={props.device_id} alarm={props.alarm}/>
         </CardActions>
       </Card>
     </div>

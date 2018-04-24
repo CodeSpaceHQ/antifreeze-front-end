@@ -9,13 +9,14 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete. 
-    getTempHistory
+    delete: _delete.
+    getTempHistory, 
+    set_alarm
 };
 
-
+ 
 function login(username, password) {
-    const requestOptions = { 
+    const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ email: username, password: password })
     };
@@ -50,12 +51,12 @@ function getDevices() {
     };
 
     fetch(config.apiUrl + '/rest/user/devices', requestOptions)
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        store.dispatch(userActions.initalizeDevices(data));
+            store.dispatch(userActions.initalizeDevices(data));
 
-    });
+        });
 
 }
 
@@ -67,10 +68,10 @@ function getTempHistory(device_key) {
     };
 
     fetch(config.apiUrl + '/rest/device/temp/' + device_key, requestOptions)
-    .then(response => response.json())
-    .then(data => {
-       return data; 
-    });
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
 
 }
 
@@ -109,6 +110,20 @@ function register(user) {
     return fetch('http://35.226.42.111:8081/rest/user/create', requestOptions).then(handleResponse);
 }
 
+function set_alarm(this_device_key, this_alarm) {
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: authHeader(),
+        body: JSON.stringify({
+            "device_key": this_device_key,
+            "alarm": this_alarm
+        }),
+    };
+
+    return fetch(config.apiUrl+'/rest/device/alarm', requestOptions).then(handleResponse);;
+}
+
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -116,7 +131,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch('/users/' + user.id, requestOptions).then(handleResponse);;
+    return fetch('/users/' + user.id, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
