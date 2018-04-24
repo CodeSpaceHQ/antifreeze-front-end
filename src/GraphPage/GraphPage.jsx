@@ -12,20 +12,18 @@ class GraphPage extends React.Component {
     };
     this.setChartData = this.setChartData.bind(this);
   }
-  
+
   componentWillMount() {
     this.getChartData();
     this.setChartData();
   }
 
   getChartData() {
-    let user = JSON.parse(localStorage.getItem('user'));
     fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.match.params.device_key,{
       method: 'GET',
       headers: authHeader(),
     })
-      .then(function (response) {
-        return response.json();
+      .then((response) => { return response.json();
       })
       .catch(error => console.error('Error:', error))
       .then((myJson) => {
@@ -36,7 +34,6 @@ class GraphPage extends React.Component {
           // convert dates to meaningful values
           times.push(myJson.temps[i].date);
         }
-        // setChartData(temps, times);
         this.setChartData(temps, times);
       });
   }
@@ -44,11 +41,10 @@ class GraphPage extends React.Component {
   setChartData(temps, times) {
     this.setState({
       chartData: {
-        labels: times, // date time goes here
+        labels: times,
         datasets: [
           {
             label: 'Temperature',
-            // temp data goes here
             data: temps,
             backgroundColor: 'rgba(0,0,255,.7)',
           },
