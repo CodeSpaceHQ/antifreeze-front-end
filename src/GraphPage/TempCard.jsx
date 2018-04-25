@@ -44,7 +44,7 @@ function SimpleCard(props) {
           image="notifications.jpg"
         />
         <CardActions >
-        <SwitchLabels device_id={props.device_id} alarm={props.alarm}/>
+        <SwitchLabels device_id={props.device_id}/>
         </CardActions>
       </Card>
     </div>

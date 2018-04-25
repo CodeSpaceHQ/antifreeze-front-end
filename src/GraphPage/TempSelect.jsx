@@ -8,6 +8,8 @@ import Select from 'material-ui/Select';
 const styles = theme => ({
   root: {
     display: 'inherit',
+    float: 'left', 
+    width: '50%'
   },
   formControl: {
     minWidth: '160px',

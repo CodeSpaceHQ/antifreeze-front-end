@@ -12,7 +12,7 @@ import { userService } from '../_services';
 class SwitchLabels extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       checked: false,
     };
@@ -32,10 +32,16 @@ class SwitchLabels extends React.Component {
   render() {
     return (
       <div>
-        <Typography style={{ color: 'Tomato', fontSize: '15px', padding: '10px 0px 0px 0px' }} gutterBottom variant="headline" component="h2">
+        <Typography style={{ color: 'Tomato', fontSize: '15px', padding: '10px 0px 0px 0px', float: 'left', width: '50%', position:'relative' }} gutterBottom variant="headline" component="h2">
           Set Temperature Alert
         </Typography>
-        <FormControlLabel style={{ paddingLeft: '10px', marginBottom: '0px' }}
+        <Typography style={{ color: 'Green', fontSize: '15px', padding: '10px 0px 0px 0px', float: 'left', width: '50%', position:'relative' }} gutterBottom variant="headline" component="h2">
+          Current Temperature
+        </Typography>
+        <Typography style={{ fontSize: '35px', padding: '10px 0px 0px 0px', float: 'right',  marginRight: '10%', width: '30%', position:'relative'}} gutterBottom variant="headline" component="h2">
+          {this.props.currTemp}  °C
+        </Typography>
+        <FormControlLabel style={{ float: 'left', width: '50%', marginBottom: '0px', marginLeft: '0px', position:'relative' }}
           control={
             <Switch
               checked={this.props.alarm != null}
@@ -66,6 +72,7 @@ function mapStateToProps(state, ownProps) {
   var device = findElement(state.devices, 'device_key', ownProps.device_id);
   return {
     alarm: device.alarm,
+    currTemp: device.temp
   };
 }
 
