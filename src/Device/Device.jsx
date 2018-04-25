@@ -32,11 +32,9 @@ const Device = class Device extends React.Component {
   }
 
   redirectToGraph() {
-    history.push({
-      pathname: '/graph',
-      state: { device_id: this.props.device_key, alarm: this.props.alarm  }
-    }
-    );
+
+      history.push(`/graph/${this.props.device_key}`);
+
   }
 
   render() {
@@ -74,8 +72,8 @@ const Device = class Device extends React.Component {
               <ListItemSecondaryAction>
                 <IconButton aria-label="Settings">
                   <SettingsIcon />
-                </IconButton >
-              </ListItemSecondaryAction >
+                </IconButton>
+              </ListItemSecondaryAction>
             </ListItem>
           </List>
         </Collapse>

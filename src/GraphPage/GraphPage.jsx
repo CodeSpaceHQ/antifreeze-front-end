@@ -13,44 +13,44 @@ class GraphPage extends React.Component {
     this.state = {
       chartData: props.chartData,
     };
+    this.setChartData = this.setChartData.bind(this);
   }
 
   componentDidMount() {
     store.dispatch(userActions.reconnectSocket());
-  }
-  
-  componentWillMount() {
     this.getChartData();
+    this.setChartData();
   }
 
   getChartData() {
-    let user = JSON.parse(localStorage.getItem('user'));
-    fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.location.state.device_id,{
+    fetch('http://35.226.42.111:8081/rest/device/temp/' + this.props.match.params.device_key,{
       method: 'GET',
       headers: authHeader(),
     })
-      .then(function(response) {
-        return response.json();
+      .then((response) => { return response.json();
       })
-      .then(function(myJson) {
-        console.log(myJson);
+      .catch(error => console.error('Error:', error))
+      .then((myJson) => {
+        var temps = [];
+        var times = [];
+        for (var i = 0; i < myJson.temps.length; i++) {
+          temps.push(myJson.temps[i].temp);
+          // convert milliseconds to date
+          const d = new Date(myJson.temps[i].date).toLocaleString();
+          times.push(d);
+        }
+        this.setChartData(temps, times);
       });
+  }
 
-
-    // Hardcoding in graph data
+  setChartData(temps, times) {
     this.setState({
       chartData: {
-        labels: ['February 1', 'March 1', 'April 1'], // date time goes here
+        labels: times,
         datasets: [
           {
             label: 'Temperature',
-            // temp data goes here
-            data: [
-              20,
-              23,
-              25,
-              30
-            ],
+            data: temps,
             backgroundColor: 'rgba(0,0,255,.7)',
           },
         ],
