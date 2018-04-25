@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 import { authHeader } from '../_helpers';
-import { store } from '../_helpers';
 import  TempCard  from './TempCard.jsx';
-import { userActions } from '../_actions';
 
 class GraphPage extends React.Component {
   constructor(props) {
@@ -16,8 +14,7 @@ class GraphPage extends React.Component {
     this.setChartData = this.setChartData.bind(this);
   }
 
-  componentDidMount() {
-    store.dispatch(userActions.reconnectSocket());
+  componentWillMount() {
     this.getChartData();
     this.setChartData();
   }
@@ -62,8 +59,9 @@ class GraphPage extends React.Component {
     return (
       <div className='text-center'>
         <ButtonAppBar />
-        <TempCard device_id = {this.props.location.state.device_id} alarm = { this.props.location.state.alarm }/>
+        <TempCard device_id = {this.props.match.params.device_key}/>
         <Line data={this.state.chartData} />
+
       </div>
     );
   }

@@ -40,7 +40,7 @@ function SimpleCard(props) {
       <Card className={classes.card}>
       <CardMedia
           className={classes.media}
-          image="assets/notifications.jpg"
+          image="/assets/notifications.jpg"
         />
         <CardActions >
         <SwitchLabels device_id={props.device_id}/>
