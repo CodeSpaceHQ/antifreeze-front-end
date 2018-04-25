@@ -5,6 +5,7 @@ import ButtonAppBar from '../Material/ButtonAppBar.jsx';
 import { authHeader } from '../_helpers';
 import { store } from '../_helpers';
 import  TempCard  from './TempCard.jsx';
+import { userActions } from '../_actions';
 
 class GraphPage extends React.Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class GraphPage extends React.Component {
     this.state = {
       chartData: props.chartData,
     };
+  }
+
+  componentDidMount() {
+    store.dispatch(userActions.reconnectSocket());
   }
   
   componentWillMount() {
