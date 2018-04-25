@@ -22,7 +22,7 @@ export function users(state = {}, action) {
           user.id === action.id
             ? { ...user, deleting: true }
             : user
-        )
+        ) 
       };
     case userConstants.DELETE_SUCCESS:
       // remove deleted user from state

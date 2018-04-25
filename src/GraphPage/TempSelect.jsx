@@ -22,12 +22,12 @@ class NativeSelect extends React.Component {
     super(props);
 
     this.state = {
-      age: '',
-      name: 'hai',
+      temp: this.props.alarm
     };
   
     this.handleChange = name => event => {
-      this.setState({ [name]: event.target.value });
+      this.setState({ temp: event.target.value });
+      this.props.temp_change(event.target.value);
     };
   }
  
@@ -42,11 +42,10 @@ class NativeSelect extends React.Component {
             native
             value={this.state.age}
             onChange={this.handleChange('age')}
-            input={<Input id="age-native-helper" />}
           >
             <option value="" > {this.props.alarm} °C </option>
 
-            { Array.from(new Array(70),(val,index)=>index).map( digit => <option key = {digit} value={digit - 50}> {digit - 50} °C </option>) }
+            { Array.from(new Array(41),(val,index)=>index).map( digit => <option key = {digit} value={digit - 20}> {digit - 20} °C </option>) }
          
           </Select>
           <FormHelperText>Threshold Temperature for Notification</FormHelperText>

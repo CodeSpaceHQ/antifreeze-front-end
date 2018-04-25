@@ -75,7 +75,7 @@ function getTempHistory(device_key) {
 
 }
 
-function logout() {
+function logout() { 
     // remove user and state data from local storage to log user out
     localStorage.removeItem('user');
     localStorage.removeItem('Freeze-B-Gone:state');
@@ -118,10 +118,10 @@ function set_alarm(this_device_key, this_alarm) {
         body: JSON.stringify({
             "device_key": this_device_key,
             "alarm": this_alarm
-        }),
+        })
     };
 
-    return fetch(config.apiUrl+'/rest/device/alarm', requestOptions).then(handleResponse);;
+    return fetch(config.apiUrl+'/rest/device/alarm', requestOptions);
 }
 
 function update(user) {

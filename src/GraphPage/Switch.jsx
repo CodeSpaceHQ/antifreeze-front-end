@@ -18,19 +18,18 @@ class SwitchLabels extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   handleChange() {
-    this.props.devices.map(device => {
-      if (device.device_key == this.props.device_id) {
-        console.log(device.alarm);
-          device.alarm != null ? userService.set_alarm(this.props.device_id, null) : null;
-      }
-    });
-  };
+    this.props.alarm != null ? userService.set_alarm(this.props.device_id, null) : userService.set_alarm(this.props.device_id, 0);
+  }
+  
+  changeTemp(this_temp) {  
+    userService.set_alarm(this.props.device_id, parseInt(this_temp));
+  }
 
   render() {
-
     return (
       <div>
         <Typography style={{ color: 'Tomato', fontSize: '15px', padding: '10px 0px 0px 0px' }} gutterBottom variant="headline" component="h2">
@@ -46,16 +45,27 @@ class SwitchLabels extends React.Component {
           }
           label="Enable Push Notifications"
         />
-        {this.props.alarm != null ? <TempSelect alarm={this.props.alarm} /> : null}
+        {this.props.alarm != null ? <TempSelect temp_change={this.changeTemp.bind(this)} alarm={this.props.alarm} /> : null}
 
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+/* This For loop could have been avoided if the device_key was passed as a numeric index
+   Example: obj["device_key"] = "abc", leading to O(1) insted of O(n) time complexity when loading
+   the graph page. (n => Number of devices) */
+
+function findElement(arr, propName, propValue) {
+  for (var i = 0; i < arr.length; i++)
+    if (arr[i][propName] == propValue)
+      return arr[i];
+}
+
+function mapStateToProps(state, ownProps) {
+  var device = findElement(state.devices, 'device_key', ownProps.device_id);
   return {
-    devices: state.devices,
+    alarm: device.alarm,
   };
 }
 
