@@ -11,7 +11,8 @@ export const userService = {
     update,
     delete: _delete.
     getTempHistory, 
-    set_alarm
+    set_alarm,
+    getDevices
 };
 
  
@@ -27,7 +28,7 @@ function login(username, password) {
                 return Promise.reject(response.statusText);
             }
 
-            return response.json();
+            return response.json(); 
         })
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -36,15 +37,13 @@ function login(username, password) {
                 // wsHandler(user.token)
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
-                getDevices();
             }
             return user;
         });
 }
 
 
-function getDevices() {
-
+function getDevices() {    
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -57,7 +56,6 @@ function getDevices() {
             store.dispatch(userActions.initalizeDevices(data));
 
         });
-
 }
 
 function getTempHistory(device_key) {

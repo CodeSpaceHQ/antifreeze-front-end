@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import { SwitchLabels } from './Switch.jsx';
-
 const styles = {
   card: {
     minWidth: 275,
@@ -41,7 +40,7 @@ function SimpleCard(props) {
       <Card className={classes.card}>
       <CardMedia
           className={classes.media}
-          image="notifications.jpg"
+          image="assets/notifications.jpg"
         />
         <CardActions >
         <SwitchLabels device_id={props.device_id}/>

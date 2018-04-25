@@ -38,7 +38,7 @@ class SwitchLabels extends React.Component {
         <Typography style={{ color: 'Green', fontSize: '15px', padding: '10px 0px 0px 0px', float: 'left', width: '50%', position:'relative' }} gutterBottom variant="headline" component="h2">
           Current Temperature
         </Typography>
-        <Typography style={{ fontSize: '35px', padding: '10px 0px 0px 0px', float: 'right',  marginRight: '10%', width: '30%', position:'relative'}} gutterBottom variant="headline" component="h2">
+        <Typography style={{ color: 'Blue', fontSize: '35px', padding: '10px 0px 0px 0px', float: 'right',  marginRight: '10%', width: '30%', position:'relative'}} gutterBottom variant="headline" component="h2">
           {this.props.currTemp}  °C
         </Typography>
         <FormControlLabel style={{ float: 'left', width: '50%', marginBottom: '0px', marginLeft: '0px', position:'relative' }}
@@ -57,10 +57,6 @@ class SwitchLabels extends React.Component {
     );
   }
 }
-
-/* This For loop could have been avoided if the device_key was passed as a numeric index
-   Example: obj["device_key"] = "abc", leading to O(1) insted of O(n) time complexity when loading
-   the graph page. (n => Number of devices) */
 
 function findElement(arr, propName, propValue) {
   for (var i = 0; i < arr.length; i++)

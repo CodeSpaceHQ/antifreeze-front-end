@@ -22,7 +22,7 @@ export function users(state = {}, action) {
           user.id === action.id
             ? { ...user, deleting: true }
             : user
-        ) 
+        )
       };
     case userConstants.DELETE_SUCCESS:
       // remove deleted user from state
@@ -53,24 +53,34 @@ export function history(state = null, action) {
   switch (action.type) {
     case userConstants.GETEMP_REQUEST:
       return action.TEMP_HIST
-      break; 
-    default: 
-      return state; 
+      break;
+    default:
+      return state;
   }
+}
+
+function findElement(arr, propName, propValue) {
+  for (var i = 0; i < arr.length; i++)
+    if (arr[i][propName] == propValue)
+      return arr[i];
 }
 
 export function devices(state = [], action) {
   switch (action.type) {
     case userConstants.ADD_DEVICE_REQUEST:
-      return [
-        ...state,
-        {
-          device_key: action.device_key,
-          name: action.name,
-          alarm: action.alarm,
-          temp: null
-        }
-      ];
+      var device = findElement(state, 'device_key', action.device_key);
+      if (device == null) {
+        return [
+          ...state,
+          {
+            device_key: action.device_key,
+            name: action.name,
+            alarm: action.alarm,
+            temp: null
+          }
+        ]
+      }
+      return state;
       break;
     case userConstants.REMOVE_ALL_DEVICE_REQUEST:
       return [];
@@ -82,12 +92,13 @@ export function devices(state = [], action) {
         }
         return {
           ...device,
-          alarm: action.ALARM        };
+          alarm: action.ALARM
+        };
       });
-      break; 
+      break;
     case userConstants.SET_ALARM_REQUEST:
       return state;
-      break; 
+      break;
     case userConstants.GETEMP_REQUEST:
       return state.map(device => {
         if (device.device_key != action.DEVICE) {

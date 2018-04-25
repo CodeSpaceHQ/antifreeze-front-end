@@ -30,6 +30,7 @@ class NestedList extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(userActions.reconnectSocket());
+    userService.getDevices();
   }
 
 
