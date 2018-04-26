@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { userActions } from '../_actions';
 import Particles from 'react-particles-js';
 
@@ -166,6 +165,9 @@ class LoginPage extends React.Component {
             params={this.params}
             style={this.style}>
           </Particles>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <img src="https://fontmeme.com/permalink/180426/23a0a646971553540d8804979a48b3b7.png" alt="ice-snow-font" border="0" className="img-responsive" height="auto"></img>
+          </div> 
             <div className="col-md-6 col-md-offset-3" >
                 <form name="form" onSubmit={this.handleSubmit} style={{padding: "25px"}}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
