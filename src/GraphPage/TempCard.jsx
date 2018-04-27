@@ -4,6 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import { SwitchLabels } from './Switch.jsx';
+import ButtonAppBar from '../Material/ButtonAppBar.jsx';
+
 const styles = {
   card: {
     minWidth: 275,
@@ -37,6 +39,7 @@ function SimpleCard(props) {
 
   return (
     <div>
+      <ButtonAppBar />
       <Card className={classes.card}>
       <CardMedia
           className={classes.media}
