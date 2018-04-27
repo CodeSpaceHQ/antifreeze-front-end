@@ -35,8 +35,9 @@ Open http://localhost:8080/ in browser.
 
 ## Authors
 
-* **Robin Ronson** - *Main work* - [robrons96](https://github.com/robrons96)
-* **Nils Griswold-Steiner** - *Inital Setup and Build Fixes* - [NilsG-S](https://github.com/NilsG-S)
+* **Nils Griswold-Steiner** - *Inital Setup, Build Fixes, Notifications* - [NilsG-S](https://github.com/NilsG-S)
+* **Rachel Cramblitt** - *Temperature Graph* - [rcramblitt](https://github.com/rcramblitt)
+* **Robin Ronson** - *User Interface* - [robrons96](https://github.com/robrons96)
 
 ## Acknowledgments
 

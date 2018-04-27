@@ -14,7 +14,8 @@ export const userActions = {
     initalizeDevices,
     addDevice,
     updateAlarm,
-    receiveTempHist
+    receiveTempHist,
+    removeDevices
 };
 
 function login(username, password) {
@@ -50,8 +51,10 @@ function logout() {
         dispatch(removeDevices());
     };
     function _logout() { return { type: userConstants.LOGOUT } };
-    function removeDevices() { return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
 }
+
+function removeDevices() { return { type: userConstants.REMOVE_ALL_DEVICE_REQUEST } }
+
 
 function register(user) {
     return dispatch => {

@@ -10,6 +10,7 @@ import HomePage from '../HomePage/home.jsx';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import GraphPage from '../GraphPage/GraphPage.jsx';
+import  TempCard  from '../GraphPage/TempCard.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
                 <Route path='/graph/:device_key' component={GraphPage} />
+                <Route path='/alert/:device_key' component={TempCard} />
               </div>
             </Router>
           </div>
