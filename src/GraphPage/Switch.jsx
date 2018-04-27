@@ -12,7 +12,7 @@ import { userService } from '../_services';
 class SwitchLabels extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       checked: false,
     };
@@ -24,35 +24,40 @@ class SwitchLabels extends React.Component {
   handleChange() {
     this.props.alarm != null ? userService.set_alarm(this.props.device_id, null) : userService.set_alarm(this.props.device_id, 0);
   }
-  
-  changeTemp(this_temp) {  
+
+  changeTemp(this_temp) {
     userService.set_alarm(this.props.device_id, parseInt(this_temp));
   }
 
   render() {
     return (
-      <div>
-        <Typography style={{ color: 'Tomato', fontSize: '15px', padding: '10px 0px 0px 0px', float: 'left', width: '50%', position:'relative' }} gutterBottom variant="headline" component="h2">
-          Set Temperature Alert
-        </Typography>
-        <Typography style={{ color: 'Green', fontSize: '15px', padding: '10px 0px 0px 0px', float: 'left', width: '50%', position:'relative' }} gutterBottom variant="headline" component="h2">
-          Current Temperature
-        </Typography>
-        <Typography style={{ color: 'Blue', fontSize: '35px', padding: '10px 0px 0px 0px', float: 'right',  marginRight: '10%', width: '30%', position:'relative'}} gutterBottom variant="headline" component="h2">
-          {this.props.currTemp}  °C
-        </Typography>
-        <FormControlLabel style={{ float: 'left', width: '50%', marginBottom: '0px', marginLeft: '0px', position:'relative' }}
-          control={
-            <Switch
-              checked={this.props.alarm != null}
-              onChange={this.handleChange}
-              value="checked"
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{display: 'flex', order:2, alignItems: 'center', flexDirection: 'column',  marginLeft:'50px'}}>
+          <Typography style={{ flex: 1, order: 1, color: 'Green', fontSize: '15px' }} gutterBottom variant="headline" component="h2">
+            Current Temperature
+          </Typography>
+          <Typography style={{ flex: 1, order: 2, color: 'Blue', fontSize: '35px' }} gutterBottom variant="headline" component="h2">
+            {this.props.currTemp}  °C
+          </Typography>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', flex:3, order:1 }}>
+          <Typography style={{ flex: 1, color: 'Tomato', fontSize: '15px' }} gutterBottom variant="headline" component="h2">
+            Set Temperature Alert
+          </Typography>
+          <div style={{ marginLeft:'14px', display: 'flex', flexDirection: 'column', flex: 1}}>
+            <FormControlLabel style={{ flex:1 }}
+              control={
+                <Switch
+                  checked={this.props.alarm != null}
+                  onChange={this.handleChange}
+                  value="checked"
+                />
+              }
+              label="Enable Push Notifications"
             />
-          }
-          label="Enable Push Notifications"
-        />
-        {this.props.alarm != null ? <TempSelect temp_change={this.changeTemp.bind(this)} alarm={this.props.alarm} /> : null}
-
+            {this.props.alarm != null ? <TempSelect style={{ flex: 1}} temp_change={this.changeTemp.bind(this)} alarm={this.props.alarm} /> : null}
+          </div>
+        </div>
       </div>
     );
   }
