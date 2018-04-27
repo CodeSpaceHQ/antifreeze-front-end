@@ -14,3 +14,4 @@ node_modules/
 public/*
 !public/index.html
 !public/sw.js
+!public/assets
