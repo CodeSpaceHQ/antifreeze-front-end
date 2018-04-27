@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import green from 'material-ui/colors/green';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 import TempSelect from './TempSelect.jsx';
 import { connect } from 'react-redux';
