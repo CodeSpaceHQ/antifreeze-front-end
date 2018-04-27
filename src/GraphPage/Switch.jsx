@@ -8,6 +8,7 @@ import TempSelect from './TempSelect.jsx';
 import { connect } from 'react-redux';
 import Typography from 'material-ui/Typography';
 import { userService } from '../_services';
+import { userActions } from '../_actions';
 
 class SwitchLabels extends React.Component {
   constructor(props) {
@@ -21,6 +22,10 @@ class SwitchLabels extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.props.dispatch(userActions.reconnectSocket());
+  }
+
   handleChange() {
     this.props.alarm != null ? userService.set_alarm(this.props.device_id, null) : userService.set_alarm(this.props.device_id, 0);
   }
@@ -31,7 +36,7 @@ class SwitchLabels extends React.Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ margin: 'auto', display: 'flex', alignItems: 'center'}}>
         <div style={{display: 'flex', order:2, alignItems: 'center', flexDirection: 'column',  marginLeft:'50px'}}>
           <Typography style={{ flex: 1, order: 1, color: 'Green', fontSize: '15px' }} gutterBottom variant="headline" component="h2">
             Current Temperature
@@ -44,7 +49,7 @@ class SwitchLabels extends React.Component {
           <Typography style={{ flex: 1, color: 'Tomato', fontSize: '15px' }} gutterBottom variant="headline" component="h2">
             Set Temperature Alert
           </Typography>
-          <div style={{ marginLeft:'14px', display: 'flex', flexDirection: 'column', flex: 1}}>
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1}}>
             <FormControlLabel style={{ flex:1 }}
               control={
                 <Switch
