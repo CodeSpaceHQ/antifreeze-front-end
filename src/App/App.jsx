@@ -38,7 +38,7 @@ class App extends React.Component {
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
                 }
                 <Route path='/graph/:device_key' component={GraphPage} />
-                <Route path='/alert/:device_key' component={TempCard} />
+                <Route path='/alert' component={TempCard} />
               </div>
             </Router>
           </div>

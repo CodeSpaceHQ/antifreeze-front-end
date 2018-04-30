@@ -40,9 +40,11 @@ const Device = class Device extends React.Component {
   }
 
   redirectToAlert() {
-
-    history.push(`/alert/${this.props.device_key}`);
-
+    history.push({
+      pathname: '/alert',
+      state: { device_key: this.props.device_key }
+    })
+    
   }
 
   render() {

@@ -45,7 +45,7 @@ function SimpleCard(props) {
           image="/assets/notifications.jpg"
         />
         <CardActions >
-        <SwitchLabels device_id={props.match.params.device_key}/>
+        <SwitchLabels device_id={props.location.state.device_key}/>
         </CardActions>
       </Card>
     </div>
